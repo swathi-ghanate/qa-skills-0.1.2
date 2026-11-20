@@ -1,0 +1,62 @@
+module: login
+flow_id: AUTH-03
+flow_name: wrong_password_rejected
+priority: P0
+type: [e2e]
+tags: [regression]
+
+actors:
+  - unauthenticated
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee_user_login, home]
+
+cases:
+  - id: AUTH-03-E1
+    title: Reject a wrong password and stay on the workbench login
+    type: negative
+    test_type: [e2e]
+    priority: P0
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee/user/login"
+      - "Team confirmed on 2026-11-16 that there is no account lockout"
+    steps:
+      - "1. Open /workbench-ui/employee/user/login and wait for animation_1dcbe0 to be hidden"
+      - "2. Fill username_30177a with QA_USERNAME from .env"
+      - "3. Fill password_53fc5f with the synthetic wrong password from test data AUTH-03-E1"
+      - "4. Click select_an_option_be0437, then choose the option 'Sierra Leone'"
+      - "5. Click by_clicking_i_accept_the_410d00 to tick field_3_b57319"
+      - "6. Click continue_5f8c5f"
+    assertions:
+      - url_pathname_is_workbench_ui_employee_user_login
+      - login_error_message_visible
+      - no_session_token_in_local_storage
+    test_data_ref: AUTH-03-E1
+    coverage_note: >
+      Credential rejection for a valid username; the error text is not in the contract and is captured on first run (same text as AUTH-04-E1).
+
+  - id: AUTH-03-E2
+    title: Allow a correct login after repeated wrong passwords (no lockout)
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee/user/login"
+      - "SIDE EFFECT: makes 5 failed logins on the shared test account. Team confirmed there is no lockout; if this case fails, check the account is not locked before re-running other suites"
+    steps:
+      - "1. Open /workbench-ui/employee/user/login and wait for animation_1dcbe0 to be hidden"
+      - "2. Repeat 5 times: fill username_30177a with QA_USERNAME, fill password_53fc5f with the wrong password from AUTH-03-E2, set the city to 'Sierra Leone' via select_an_option_be0437, tick consent via by_clicking_i_accept_the_410d00 if unticked, click continue_5f8c5f, and wait for the error message"
+      - "3. Fill password_53fc5f with QA_PASSWORD from .env, make sure city and consent are still set, and click continue_5f8c5f"
+      - "4. Wait for the URL to become /workbench-ui/employee"
+    assertions:
+      - url_pathname_is_workbench_ui_employee
+      - commodity_management_card_visible
+    test_data_ref: AUTH-03-E2
+    coverage_note: >
+      Verifies the confirmed no-lockout rule; no other case makes repeated failed attempts.

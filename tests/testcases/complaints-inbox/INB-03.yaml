@@ -1,0 +1,65 @@
+module: complaints-inbox
+flow_id: INB-03
+flow_name: search_by_mobile_number
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-03. The mobile number is QA_COMPLAINANT_MOBILE from .env (team-owned);
+# on 2026-11-20 it returned exactly the 8 QA-TEST complaints, so no other person's complaint is listed.
+# Fill it with fillPrivately() so the value never appears in report step titles.
+# Logged-out API check for the inbox search: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20; not in contract/api-contract.json
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-03-H1
+    title: List the QA-TEST complaints when searching the team-owned complainant mobile number
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "QA_COMPLAINANT_MOBILE (9 to 11 digits, the complaint form's rule since 2026-11-20; a number the team owns) is set in .env"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Fill mobilenumber_c51cd9 with QA_COMPLAINANT_MOBILE from .env (fillPrivately)"
+      - "3. Click Search (contract gap) and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - search_request_has_mobile_number   # moduleSearchCriteria.mobileNumber present; the value is not logged
+      - result_rows_at_least_1
+      - known_qa_test_complaint_among_results
+    test_data_ref: INB-03-H1
+    coverage_note: >
+      Second search mode; the count grows with every CMP-08 run, so only the presence of a known QA-TEST complaint is asserted.
+
+  - id: INB-03-E1
+    title: Show no complaints or a format message for a 3-digit mobile number
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Fill mobilenumber_c51cd9 with the short number from test data INB-03-E1"
+      - "3. Click Search"
+    assertions:
+      - result_rows_zero_or_format_message_shown   # behaviour not observed yet: capture the message (or the empty result) on the first run
+    test_data_ref: INB-03-E1
+    coverage_note: >
+      Invalid-format partition of the inbox mobile search; CMP-06-E2/E5 check mobile length on the Create complaint form, a different field.

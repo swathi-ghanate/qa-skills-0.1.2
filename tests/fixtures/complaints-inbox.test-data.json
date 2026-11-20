@@ -1,0 +1,90 @@
+{
+  "_comment": "Synthetic test data for tests/testcases/complaints-inbox. Labels and options observed live (read-only) on 2026-11-20. Only QA-TEST complaints are used: complaints filed by CMP-08 with the team-owned .env QA_COMPLAINANT_MOBILE. PGR-2026-11-19-004529 must still be in Pending Assignment for INB-10; change it here if INB-11 (or a person) resolves it. Other people's complaints are never named here.",
+  "INB-01-H1": {},
+  "INB-01-H2": {
+    "searchFields": ["Complaint Number", "Mobile Number", "Date Range"],
+    "searchButtons": ["Search", "Clear Search"],
+    "filterLabels": ["Assigned to me", "Assigned to others", "Complaint Type", "Country", "Status", "Pending Assignment"],
+    "filterButtons": ["Apply", "Clear All"],
+    "columns": ["Complaint Number", "Boundary", "Current Status", "Current owner", "Created Date"],
+    "defaultRequest": { "limit": 10, "offset": 0, "businessService": ["PGR"], "moduleName": "RAINMAKER-PGR", "tenantId": "si" }
+  },
+  "INB-02-H1": { "complaintNumber": "PGR-2026-11-19-004529" },
+  "INB-02-H2": { "complaintNumber": "from CMP-08-H1 in the same run", "expectedStatus": "Pending Assignment" },
+  "INB-02-E1": { "complaintNumber": "PGR-2000-01-01-000000" },
+  "INB-02-E2": {},
+  "INB-03-H1": { "mobileNumber": "env:QA_COMPLAINANT_MOBILE", "knownComplaintNumber": "PGR-2026-11-19-004529" },
+  "INB-03-E1": { "mobileNumber": "123" },
+  "INB-04-H1": { "fromDate": "2026-11-19", "toDate": "2026-11-19", "knownComplaintNumber": "PGR-2026-11-19-004529" },
+  "INB-04-E1": { "fromDate": "2000-01-01", "toDate": "2000-01-31" },
+  "INB-05-H1": { "complaintNumber": "PGR-2026-11-19-004529" },
+  "INB-05-H2": { "complaintNumber": "PGR-2026-11-19-004529", "status": "Pending Assignment" },
+  "INB-06-H1": { "radio": "Assigned to me" },
+  "INB-06-H2": { "firstRadio": "Assigned to me", "secondRadio": "Assigned to others" },
+  "INB-06-H3": {
+    "expectedOptions": [
+      "Other: Dept-Other",
+      "Performance Issue: Dept-eGov",
+      "Security Issue: Dept-eGov",
+      "Data Issue: Dept-eGov",
+      "User Account Issue: Dept-eGov",
+      "Technical Issue: Dept-eGov"
+    ],
+    "_note": "The same list sometimes shows translated labels instead (live 2026-11-20, depends on when the label translations load); both are accepted and the one shown is recorded.",
+    "localizedOptions": [
+      "Other",
+      "Performance Issues",
+      "Security Issues",
+      "Data Issues",
+      "User Account Issues",
+      "Technical Issues"
+    ]
+  },
+  "INB-06-H4": { "complaintType": "Other: Dept-Other", "complaintTypeLocalized": "Other" },
+  "INB-06-H5": { "status": "Pending Assignment", "applicationStatus": "PENDING_ASSIGNMENT" },
+  "INB-06-H6": { "filter": "Country", "expectedOption": "Sierra Leone" },
+  "INB-06-E1": {},
+  "INB-07-H1": { "radio": "Assigned to me", "complaintType": "Other: Dept-Other", "complaintTypeLocalized": "Other", "status": "Pending Assignment" },
+  "INB-08-H1": { "pageSize": 10, "minTotal": 11 },
+  "INB-08-H2": { "pageSize": 10, "minTotal": 11, "expectedOffset": 10 },
+  "INB-08-H3": { "pageSize": 10, "minTotal": 11, "expectedOffset": 0 },
+  "INB-08-H4": { "pageSize": 10, "minTotal": 11 },
+  "INB-08-H5": { "rowsPerPage": "20", "expectedLimit": 20, "minTotal": 11 },
+  "INB-09-H1": {
+    "complaintNumber": "PGR-2026-11-19-004529",
+    "heading": "Complaint Details",
+    "labels": [
+      "Complaint Number",
+      "Complaint Type",
+      "Complaint Filed Date",
+      "Area",
+      "Current Status",
+      "Landmark Details",
+      "Complaint description",
+      "Complainant Name",
+      "Complainant Contact Number"
+    ]
+  },
+  "INB-09-H2": { "complaintNumber": "PGR-2026-11-19-004529" },
+  "INB-10-H1": { "complaintNumber": "PGR-2026-11-19-004529", "expectedActions": ["Resolve", "Assign", "Reject"] },
+  "INB-10-H2": { "complaintNumber": "PGR-2026-11-19-004529", "action": "Assign", "title": "Assign complaint", "fields": ["Assign to", "Employee Comments", "Complaint File"] },
+  "INB-10-H3": {
+    "complaintNumber": "PGR-2026-11-19-004529",
+    "action": "Reject",
+    "title": "Reject Complaint",
+    "reasons": [
+      "Resolved or Closed Issue",
+      "Non-actionable Issue",
+      "Insufficient or Missing Information",
+      "Duplicate Complaint",
+      "Invalid Complaint"
+    ]
+  },
+  "INB-10-H4": { "complaintNumber": "PGR-2026-11-19-004529", "action": "Resolve", "title": "Resolve Complaint", "fields": ["Employee Comments", "Complaint File"] },
+  "INB-10-E1": { "complaintNumber": "PGR-2026-11-19-004529", "action": "Resolve" },
+  "INB-10-E2": { "complaintNumber": "PGR-2026-11-19-004529", "action": "Reject", "comments": "QA-TEST guard check, the update request is blocked" },
+  "INB-12-H1": {},
+  "INB-12-H2": {},
+  "INB-13-H1": {},
+  "INB-13-H2": { "complaintNumber": "PGR-2026-11-19-004529" }
+}

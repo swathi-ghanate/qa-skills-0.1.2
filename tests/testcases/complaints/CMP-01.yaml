@@ -1,0 +1,64 @@
+module: complaints
+flow_id: CMP-01
+flow_name: open_create_complaint_from_home
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee, payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-01-H1
+    title: Open Create complaint from the Complaints card on the workbench home
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "DIGIT sessionStorage restored from .auth/session-storage.json (restoreSavedSession), needed by the workbench home"
+      - "Browser is on the origin + /workbench-ui/employee"
+    steps:
+      - "1. Open /workbench-ui/employee and wait for animation_1dcbe0 to be hidden"
+      - "2. Wait for create_complaint_17f516 to be visible"
+      - "3. Click create_complaint_17f516"
+      - "4. Wait for the URL pathname to be /payments-ui/employee/pgr/create-complaint and for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_create_complaint
+      - submit_button_visible
+      - complaint_type_field_visible
+    test_data_ref: CMP-01-H1
+    coverage_note: >
+      The real user path into the form (home card, then a payments-ui app switch); AUTH-07-H1 only opens the URL directly to test the session.
+
+  - id: CMP-01-H2
+    title: Show all five form sections with their fields and required markers
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint and wait for animation_1dcbe0 to be hidden"
+      - "2. Wait for submit_b6846a to be visible"
+    assertions:
+      - section_headings_visible   # Complaint Details, Boundary Details, Complainant Details, Additional Details, Complaint Location (contract gap: headings captured live)
+      - required_markers_shown   # "*" on Complaint Type, Date of complaint, Country, complaint-for question, Complainant Contact Number, Complaint description
+      - key_fields_visible   # field_0_9988fc, complaintdate_8ac55d, field_4_cba6ab, field_5_cba6ab, complainantname_fc3612, complainantcontactnumber_869a24, description_9237c5, file_34e35c, addressone_768768, postalcode_0b8576
+    test_data_ref: CMP-01-H2
+    coverage_note: >
+      Form inventory: catches a missing section, field or required marker, which the navigation case does not check.
+
+rbac_checks:
+  - id: CMP-01-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: an API called by /payments-ui/employee/pgr/create-complaint; no API contract yet, run qa-kit api-scrape>"
+    expected_status: 401

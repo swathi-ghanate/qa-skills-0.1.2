@@ -1,0 +1,60 @@
+module: user-management
+flow_id: USR-02
+flow_name: hierarchy_type_step
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_hrms_inbox, home]
+
+cases:
+  - id: USR-02-H1
+    title: Offer the configured hierarchy in the Hierarchy type list
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox and wait for animation_1dcbe0 to be hidden and the Next button to be visible"
+      - "2. Open the Hierarchy type dropdown (first .digit-dropdown-select; contract gap)"
+    assertions:
+      - hierarchy_options_match_test_data   # exactly one option: ADMIN_KAMBIA
+    test_data_ref: USR-02-H1
+    coverage_note: >
+      The configured hierarchy list itself; USR-01 only picks the option.
+
+  - id: USR-02-E1
+    title: Keep the hierarchy step and show an error when Next is clicked with nothing chosen
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox and wait for animation_1dcbe0 to be hidden and the Next button to be visible"
+      - "2. Click Next without choosing a hierarchy type"
+    assertions:
+      - mandatory_field_error_visible   # "Please fill the mandatory field"
+      - search_fields_not_shown
+    test_data_ref: USR-02-E1
+    coverage_note: >
+      The step's mandatory check; every other case chooses a hierarchy first.
+
+rbac_checks:
+  - id: USR-02-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /boundary-service/boundary-hierarchy-definition/_search (observed live 2026-11-16 on the hierarchy step; no API contract yet)"
+    expected_status: 401

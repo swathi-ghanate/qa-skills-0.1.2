@@ -1,0 +1,61 @@
+module: complaints
+flow_id: CMP-03
+flow_name: complaint_date_limits
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-03-H1
+    title: Accept today's date as the date of complaint
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Fill complaintdate_8ac55d with today's date (computed at run time, test data CMP-03-H1)"
+    assertions:
+      - complaint_date_value_is_today
+      - select_date_display_shows_date
+    test_data_ref: CMP-03-H1
+    coverage_note: >
+      The upper boundary value (today) is accepted.
+
+  - id: CMP-03-E1
+    title: Block a future date of complaint
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Fill complaintdate_8ac55d with tomorrow's date (computed at run time, test data CMP-03-E1)"
+    assertions:
+      - complaint_date_max_is_today
+      - future_date_not_accepted   # input validity rangeOverflow, or the value is rejected; the app's message is TBD
+    test_data_ref: CMP-03-E1
+    coverage_note: >
+      Just above the boundary (tomorrow); a complaint cannot be dated in the future.
+
+rbac_checks:
+  - id: CMP-03-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: an API called by /payments-ui/employee/pgr/create-complaint; run qa-kit api-scrape>"
+    expected_status: 401

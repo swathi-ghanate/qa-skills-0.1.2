@@ -1,0 +1,42 @@
+module: complaints
+flow_id: CMP-10
+flow_name: breadcrumb_home
+priority: P2
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-10-H1
+    title: Leave the form through the breadcrumb Home link
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint and wait for animation_1dcbe0 to be hidden"
+      - "2. Click home_b6873d (breadcrumb Home)"
+      - "3. Wait for the URL pathname to change away from /payments-ui/employee/pgr/create-complaint"
+    assertions:
+      - url_pathname_starts_with_payments_ui_employee   # final landing page TBD (may redirect)
+      - complaint_type_field_not_present
+    test_data_ref: CMP-10-H1
+    coverage_note: >
+      The only way out of the form that the page itself offers.
+
+rbac_checks:
+  - id: CMP-10-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: an API called by /payments-ui/employee/pgr/create-complaint; run qa-kit api-scrape>"
+    expected_status: 401

@@ -1,0 +1,61 @@
+module: complaints-inbox
+flow_id: INB-13
+flow_name: logged_out_inbox
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+# Source: tests/testplan/complaints-inbox.md#inb-13. The same pattern as CMP-09 (Create complaint), USR-12 (user pages) and
+# AUTH-05 (workbench pages), on the inbox and the complaint details page. Only the redirect is asserted; the payments-ui
+# login is never used (workbench login only).
+# INB-13-RBAC-1 is the single logged-out check for the inbox search API (overlap-check 2026-11-20). AUTH-07-RBAC-1 targets
+# the same API with a TBD endpoint; propose updating or retiring it (the team decides).
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]   # the details page is not in the contract
+
+cases:
+  - id: INB-13-H1
+    title: Redirect a logged-out visitor away from the complaints inbox
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Fresh browser context with no stored session (storageState empty); do not use .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2"
+      - "2. Wait for the URL pathname to change away from /payments-ui/employee/pgr/inbox-v2"
+    assertions:
+      - url_pathname_is_payments_ui_employee_user_login   # seen in the 2026-11-20 scrape (inbox marked protected); same target as CMP-09 and USR-12
+      - complaint_number_field_not_present
+    test_data_ref: INB-13-H1
+    coverage_note: >
+      Login protection of the inbox page; CMP-09 and USR-12 cover other payments-ui pages.
+
+  - id: INB-13-H2
+    title: Redirect a logged-out visitor away from a complaint's details page
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Fresh browser context with no stored session (storageState empty); do not use .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/complaint-details/<QA-TEST complaint number from test data INB-13-H2>"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/complaint-details/<the QA-TEST complaint number from test data INB-13-H2>"
+      - "2. Wait for the URL pathname to change away from the complaint-details path"
+    assertions:
+      - url_pathname_is_payments_ui_employee_user_login   # expected, same as H1; not observed yet for the details page
+      - take_action_button_not_present
+    test_data_ref: INB-13-H2
+    coverage_note: >
+      Login protection of the complaint details page, which holds the complainant's name and number.
+
+rbac_checks:
+  - id: INB-13-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /inbox/v2/_search (observed live 2026-11-20 on /payments-ui/employee/pgr/inbox-v2)"
+    expected_status: 401

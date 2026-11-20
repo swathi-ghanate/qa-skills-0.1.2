@@ -1,0 +1,59 @@
+module: user-management
+flow_id: USR-11
+flow_name: edit_test_user
+priority: P1
+type: [e2e]
+tags: [regression]
+
+# Edits the run's test user created by USR-10-H1 (approved by the team on 2026-11-16: edit only test-created users,
+# never real staff or the test login account). One test user per run (decided 2026-11-18): runs after USR-10-H1 in
+# tests/e2e/user-management/USR-lifecycle.e2e.spec.ts.
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /egov-hrms/employees/_create   # assumed DIGIT HRMS endpoint; confirm on the first run
+    service: egov-hrms
+  - method: POST
+    path: /egov-hrms/employees/_update   # assumed DIGIT HRMS endpoint; confirm on the first run
+    service: egov-hrms
+
+ui_pages: [payments_ui_employee_hrms_create, payments_ui_employee_hrms_inbox, home]   # the details and edit pages are not in the contract
+
+cases:
+  - id: USR-11-H1
+    title: Change the designation of a test-created user and see it on the details page
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "SIDE EFFECT: edits the run's test user (approved 2026-11-16)"
+      - "USR-10-H1 passed earlier in the same run (or QA_LIFECYCLE_USERNAME names a qatest<digits> user from an earlier run)"
+      - "Only that test-created user is edited"
+    steps:
+      - "1. Take the username of the test user created by USR-10-H1 in this run"
+      - "2. Open /payments-ui/employee/hrms/inbox, pass the hierarchy step, search the new username and click its username link"
+      - "3. Click Take Action, then Edit Employee"
+      - "4. Change Designation to the newDesignation value from test data USR-11-H1"
+      - "5. Click Submit and wait for the POST /egov-hrms/employees/_update response"
+      - "6. Open the user's details page again (search the username and click its link)"
+    # Observed 2026-11-18: Submit opens a "Ready to Submit ?" dialog whose Submit sends the update; egov-hrms answers 202 Accepted.
+    assertions:
+      - update_request_accepted   # 202 Accepted (observed 2026-11-18)
+      - details_show_new_designation
+    test_data_ref: USR-11-H1
+    coverage_note: >
+      Editing an existing user; the edit form was not captured yet and is recorded on the first run.
+
+rbac_checks:
+  - id: USR-11-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_update (assumed; confirm with qa-kit api-scrape; send an invalid payload only)"
+    expected_status: 401

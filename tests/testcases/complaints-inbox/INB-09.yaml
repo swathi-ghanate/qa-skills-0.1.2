@@ -1,0 +1,87 @@
+module: complaints-inbox
+flow_id: INB-09
+flow_name: open_complaint_details
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+# Source: tests/testplan/complaints-inbox.md#inb-09.
+# The complaint details page (/payments-ui/employee/pgr/complaint-details/<complaintNumber>) is not in the contract:
+# it exists only as 10 empty stub pages named after real complaints listed on 2026-11-20, which must not be used.
+# Everything on it was captured live, read-only, on 2026-11-20. Only QA-TEST complaints are opened.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20
+    service: inbox
+  - method: POST
+    path: /pgr-services/v2/request/_search   # observed live 2026-11-20 (?tenantId=si&serviceRequestId=<n>) on the details page
+    service: pgr-services
+  - method: POST
+    path: /egov-workflow-v2/egov-wf/process/_search   # observed live 2026-11-20 (?history=true&businessIds=<n>) on the details page
+    service: egov-workflow-v2
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]   # the details page is not in the contract
+
+cases:
+  - id: INB-09-H1
+    title: Open a QA-TEST complaint's details page from its search result
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition, so no complaint can be changed"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Fill complaintnumber_7836f5 with the QA-TEST complaint number from test data INB-09-H1, click Search and wait for exactly 1 result row"
+      - "3. Check that the row link (contract gap: a[href*='/pgr/complaint-details/'] filtered by the number) shows exactly that number, then click it"
+      - "4. Wait for the URL pathname to be /payments-ui/employee/pgr/complaint-details/<number>, for animation_1dcbe0 to be hidden and for the POST /pgr-services/v2/request/_search response"
+    assertions:
+      - url_pathname_is_complaint_details_of_searched_number
+      - complaint_details_heading_visible   # "Complaint Details"
+      - details_labels_match_test_data   # the 9 .digit-viewcard-label labels
+      - details_complaint_number_value_is_searched_number
+      - take_action_button_visible
+      - view_more_button_visible
+    test_data_ref: INB-09-H1
+    coverage_note: >
+      The only case that opens a complaint; it checks labels and our own complaint number, never the complainant's details.
+
+  - id: INB-09-H2
+    title: Return to the inbox from a complaint through the PGR Inbox breadcrumb
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-09-H2 as in steps 1-4 of INB-09-H1"
+      - "2. Click the PGR Inbox breadcrumb (contract gap: getByRole('link', { name: 'PGR Inbox' }), href /payments-ui/employee/pgr/inbox-v2)"
+      - "3. Wait for the URL pathname to be /payments-ui/employee/pgr/inbox-v2 and for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_inbox_v2
+      - complaint_number_field_visible
+    test_data_ref: INB-09-H2
+    coverage_note: >
+      Navigation back from the details page; H1 only goes forward.
+
+rbac_checks:
+  - id: INB-09-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /pgr-services/v2/request/_search?tenantId=si&serviceRequestId=<QA-TEST number> (observed live 2026-11-20 on the details page)"
+    expected_status: 401
+  - id: INB-09-RBAC-2
+    actor: unauthenticated
+    endpoint: "POST /egov-workflow-v2/egov-wf/process/_search?tenantId=si&history=true&businessIds=<QA-TEST number> (observed live 2026-11-20 on the details page)"
+    expected_status: 401

@@ -1,0 +1,110 @@
+module: complaints-inbox
+flow_id: INB-02
+flow_name: search_by_complaint_number
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+# Source: tests/testplan/complaints-inbox.md#inb-02. Search button and results rows are contract gaps (captured live, read-only, 2026-11-20).
+# Never use the contract's row-link elements (pgr_2026_...): they name complaints listed on 2026-11-20. Use the general
+# row link a[href*='/pgr/complaint-details/'] filtered by the searched number.
+# H2 was added by overlap-check (2026-11-20): no existing case proves that a complaint created by CMP-08 reaches the inbox.
+# Logged-out API check for the inbox search: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20; not in contract/api-contract.json
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-02-H1
+    title: Find exactly one complaint when searching a QA-TEST complaint number
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "The QA-TEST complaint in test data INB-02-H1 exists (filed by CMP-08 with the team-owned QA_COMPLAINANT_MOBILE)"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Fill complaintnumber_7836f5 with the complaint number from test data INB-02-H1"
+      - "3. Click Search (contract gap: getByRole('button', { name: 'Search', exact: true })) and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - search_request_has_complaint_number   # moduleSearchCriteria.complaintNumber equals the searched number
+      - exactly_one_result_row
+      - result_link_is_searched_complaint_number
+    test_data_ref: INB-02-H1
+    coverage_note: >
+      Main search path of the inbox, on a fixed QA-TEST complaint; no other case searches by complaint number.
+
+  - id: INB-02-H2
+    title: Find the complaint that CMP-08 created earlier in the same run
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "CMP-08-H1 passed earlier in the same run and handed over its complaint number (hand-off to add at /playwright-gen, like the user-management lifecycle file); without it the case stops with a clear message"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Take the complaint number created by CMP-08-H1 in this run"
+      - "2. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "3. Fill complaintnumber_7836f5 with that complaint number"
+      - "4. Click Search and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - exactly_one_result_row
+      - result_link_is_searched_complaint_number
+      - result_status_matches_test_data   # "Pending Assignment" expected for a new complaint; confirm the column text on the first run
+    test_data_ref: INB-02-H2
+    coverage_note: >
+      Cross-module check that a newly filed complaint reaches the inbox; kept out of CMP-08 itself so an inbox defect cannot fail the create test.
+
+  - id: INB-02-E1
+    title: Show no complaints for a complaint number that does not exist
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Fill complaintnumber_7836f5 with the non-existent number from test data INB-02-E1"
+      - "3. Click Search and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - result_rows_zero
+      - no_results_message_visible   # exact text not observed yet; capture it on the first run
+    test_data_ref: INB-02-E1
+    coverage_note: >
+      Empty-result partition of the complaint number search; H1/H2 only cover a number that exists.
+
+  - id: INB-02-E2
+    title: Keep the default list without an error when searching with every search field empty
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Leave complaintnumber_7836f5, mobilenumber_c51cd9 and the Date Range empty"
+      - "3. Click Search"
+    assertions:
+      - result_rows_between_1_and_10
+      - no_error_message_shown   # behaviour not observed yet (added by error guessing); the app may also show a "fill at least one field" message, confirm on the first run
+    test_data_ref: INB-02-E2
+    coverage_note: >
+      Empty-input partition of the search card, not listed in the plan; mirrors USR-04-H2 on a different page.

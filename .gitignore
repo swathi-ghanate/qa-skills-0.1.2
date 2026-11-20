@@ -1,0 +1,14 @@
+.env
+.auth/
+test-results/
+playwright-report/
+allure-results/
+.qa/auth-pending.json
+# Internal report: keeps screenshots with app data. Only allure-report-share/ (attachments stripped, secrets redacted) is committed.
+allure-report/
+.qa/run-state/
+node_modules/
+# The downloaded QA Skills toolkit (installer, CLI, skills): kept local, not part of this repository
+qa-skills/
+# Live page snapshots from browser exploration (may contain real app data)
+.playwright-mcp/

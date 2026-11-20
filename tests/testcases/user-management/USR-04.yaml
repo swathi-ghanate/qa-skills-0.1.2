@@ -1,0 +1,151 @@
+module: user-management
+flow_id: USR-04
+flow_name: default_list_clear_and_filters
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_hrms_inbox, home]
+
+cases:
+  - id: USR-04-H1
+    title: List the most recently changed users when the search page opens
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "Privacy: only counts, headers and request parameters are asserted; row values are never logged or compared"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Wait for the first POST /egov-hrms/employees/_search response and for the results rows to render"
+    assertions:
+      - default_search_request_params   # limit=10, offset=0, sortBy=lastModifiedTime, sortOrder=DESC
+      - result_rows_between_1_and_10
+      - results_table_headers_shown
+    test_data_ref: USR-04-H1
+    coverage_note: >
+      The page's default list and sort order, which no search case checks.
+
+  - id: USR-04-H2
+    title: Keep the list without an error when searching with every field empty
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Wait for the results rows to render"
+      - "3. Click Search with Employee Name, Username and Mobile Number all empty"
+    assertions:
+      - result_rows_between_1_and_10
+      - no_results_found_not_shown
+    test_data_ref: USR-04-H2
+    coverage_note: >
+      Empty-criteria search (observed: same list, no error); distinct from H1 (no click) and USR-03 (filled criteria).
+
+  - id: USR-04-H3
+    title: Empty the search fields when Clear is clicked
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Employee Name (input name=names) and Username (input name=codes) with the synthetic values from test data USR-04-H3"
+      - "3. Click Clear"
+    assertions:
+      - employee_name_field_empty
+      - username_field_empty
+    test_data_ref: USR-04-H3
+    coverage_note: >
+      The Clear button of the search form.
+
+  - id: USR-04-H4
+    title: Send the Employment Status filter when Inactive is applied
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "The request parameter name for the status filter (e.g. isActive) is confirmed on the first run"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Wait for the results rows to render"
+      - "3. Click the Inactive Employment Status radio (test data USR-04-H4)"
+      - "4. Click Apply Filters and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_request_has_inactive_status_filter
+      - result_rows_at_most_10
+    test_data_ref: USR-04-H4
+    coverage_note: >
+      The status filter reaches the search request; checked by the request, not by other people's row data.
+
+  - id: USR-04-H5
+    title: Remove the Employment Status filter when Clear Filter is clicked
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Click the Inactive Employment Status radio and click Apply Filters, then wait for the search response"
+      - "3. Click Clear Filter and wait for the next search response"
+    assertions:
+      - status_radios_unchecked
+      - last_search_request_without_status_filter
+    test_data_ref: USR-04-H5
+    coverage_note: >
+      Undoing a filter; H4 only applies it.
+
+  - id: USR-04-H6
+    title: Send the role filter when a role is chosen in By Role and applied
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Wait for the results rows to render"
+      - "3. Choose the role from test data USR-04-H6 in the By Role dropdown (contract gap)"
+      - "4. Click Apply Filters and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_request_has_role_filter
+      - result_rows_at_most_10
+    test_data_ref: USR-04-H6
+    coverage_note: >
+      The role filter, a different request parameter from the status filter in H4.
+
+rbac_checks:
+  - id: USR-04-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_search (observed live 2026-11-16; no API contract yet)"
+    expected_status: 401

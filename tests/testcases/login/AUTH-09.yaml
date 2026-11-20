@@ -1,0 +1,55 @@
+module: login
+flow_id: AUTH-09
+flow_name: password_visibility_toggle
+priority: P2
+type: [e2e]
+tags: [regression]
+
+actors:
+  - unauthenticated
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee_user_login, home]
+
+cases:
+  - id: AUTH-09-H1
+    title: Show the password when Visibility is clicked
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee/user/login"
+      - "Use the synthetic value from test data AUTH-09-H1, never the real password (it would appear in traces and screenshots)"
+    steps:
+      - "1. Open /workbench-ui/employee/user/login and wait for animation_1dcbe0 to be hidden"
+      - "2. Fill password_53fc5f with the synthetic value from AUTH-09-H1"
+      - "3. Click visibility_0fd527"
+    assertions:
+      - password_field_type_is_text
+    test_data_ref: AUTH-09-H1
+    coverage_note: >
+      Reveal state of the toggle.
+
+  - id: AUTH-09-H2
+    title: Hide the password again when Visibility is clicked a second time
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee/user/login"
+    steps:
+      - "1. Open /workbench-ui/employee/user/login and wait for animation_1dcbe0 to be hidden"
+      - "2. Fill password_53fc5f with the synthetic value from AUTH-09-H2"
+      - "3. Click visibility_0fd527 and wait for password_53fc5f to have type text"
+      - "4. Click the Visibility Off toggle (visibility_0fd527 is renamed Visibility Off once the password is shown; contract gap)"
+    assertions:
+      - password_field_type_is_password
+    test_data_ref: AUTH-09-H2
+    coverage_note: >
+      Hide transition back to masked; H1 only covers reveal.

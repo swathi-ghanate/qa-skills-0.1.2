@@ -1,0 +1,172 @@
+module: complaints-inbox
+flow_id: INB-06
+flow_name: inbox_filters
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-06. Every filter control is a contract gap (captured live, read-only, 2026-11-20):
+#  - radios: the input.digit-radio-btn inside the option whose text is "Assigned to me" / "Assigned to others"
+#    (role + name finds 0: the labels are not linked to the inputs);
+#  - Complaint Type: .digit-dropdown-employee-select-wrap--elipses under the label "Complaint Type";
+#  - Country: a boundary dropdown (.boundary-dropdown-container, label div.comment-label "Country");
+#    options of both: .digit-dropdown-item;
+#  - the whole Filter card re-mounts about 1 s after its first use (plan Finding 4): wait for it before using a filter;
+#  - Status: the input[type=checkbox] in the option whose text is "Pending Assignment".
+# The filter request field names are not observed yet: record them on the first run (as USR-04 did).
+# Assert counts, checked state and the request only, never row contents. Logged-out API check: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20; not in contract/api-contract.json
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-06-H1
+    title: Send the assignee filter when Assigned to me is applied
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Click the radio from test data INB-06-H1 (Assigned to me; contract gap)"
+      - "3. Click apply_18d6c0 and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - assigned_to_me_radio_checked
+      - search_request_has_assignee_filter   # field name to record on the first run
+      - result_rows_at_most_10
+    test_data_ref: INB-06-H1
+    coverage_note: >
+      Assignee filter; may legitimately return 0 rows when nothing is assigned to the test account.
+
+  - id: INB-06-H2
+    title: Keep only one assignee radio checked when switching to Assigned to others
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Click the first radio from test data INB-06-H2 (Assigned to me)"
+      - "3. Click the second radio from test data INB-06-H2 (Assigned to others)"
+    assertions:
+      - assigned_to_others_radio_checked
+      - assigned_to_me_radio_unchecked
+    test_data_ref: INB-06-H2
+    coverage_note: >
+      Mutual exclusion of the two assignee radios, which H1 (one radio) does not prove.
+
+  - id: INB-06-H3
+    title: List the six complaint types in the Complaint Type filter
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Click the Complaint Type dropdown in the Filter card (contract gap)"
+      - "3. Wait for the options (.digit-dropdown-item) to be visible"
+    assertions:
+      - complaint_type_option_count_is_6
+      - complaint_type_options_match_test_data   # the same 6 labels as CMP-02-H1 on the Create complaint form
+    test_data_ref: INB-06-H3
+    coverage_note: >
+      Same complaint-type master data as CMP-02-H1 but a different control (the inbox filter), so both are kept.
+
+  - id: INB-06-H4
+    title: Send the complaint type filter when a type is chosen and applied
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Choose the complaint type from test data INB-06-H4 in the Complaint Type dropdown (contract gap)"
+      - "3. Click apply_18d6c0 and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - search_request_has_complaint_type_filter   # field name to record on the first run
+      - result_rows_at_most_10
+      - every_result_row_has_details_link
+    test_data_ref: INB-06-H4
+    coverage_note: >
+      Applies a chosen type; H3 only lists the options.
+
+  - id: INB-06-H5
+    title: Send the status filter when Pending Assignment is ticked and applied
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Tick the Status checkbox from test data INB-06-H5 (contract gap)"
+      - "3. Click apply_18d6c0 and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - status_checkbox_checked
+      - search_request_has_status_filter   # field name to record on the first run
+      - result_rows_at_most_10
+    test_data_ref: INB-06-H5
+    coverage_note: >
+      Status filter; the list shows only statuses present in the data ("Pending Assignment" alone on 2026-11-20), so only its presence is relied on.
+
+  - id: INB-06-H6
+    title: Offer at least one Country in the Country filter
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "The Filter card has re-mounted after its first use (plan Finding 4); before that the list can close or look empty"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Click the Country dropdown in the Filter card (contract gap)"
+      - "3. Wait up to 10 s for options (.digit-dropdown-item) to be visible"
+    assertions:
+      - country_option_count_at_least_1   # test data INB-06-H6 names the expected country
+    test_data_ref: INB-06-H6
+    coverage_note: >
+      The only boundary filter on the inbox; documents the empty Country list seen on 2026-11-20.
+
+  - id: INB-06-E1
+    title: Keep the default list without an error when Apply is clicked with no filter chosen
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Click apply_18d6c0 without choosing any filter"
+    assertions:
+      - result_rows_between_1_and_10
+      - no_error_message_shown
+    test_data_ref: INB-06-E1
+    coverage_note: >
+      Empty-input partition of the Filter card.

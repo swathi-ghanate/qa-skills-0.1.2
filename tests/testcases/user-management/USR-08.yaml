@@ -1,0 +1,107 @@
+module: user-management
+flow_id: USR-08
+flow_name: create_user_form_layout_and_options
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_hrms_create, home]
+
+cases:
+  - id: USR-08-H1
+    title: Show the form sections with required marks on the right fields
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Wait for the Username field (#hrms-create-hr_emp_id_label) to be visible"
+    assertions:
+      - section_headings_visible   # Login Details, Personal Details, Employee Details
+      - required_marks_on_required_fields   # list in test data USR-08-H1
+      - no_required_mark_on_optional_fields   # Email, Correspondence Address
+    test_data_ref: USR-08-H1
+    coverage_note: >
+      Form inventory: a missing section, field or required mark is caught here.
+
+  - id: USR-08-H2
+    title: Offer the configured Employment Type and Department options
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Open the Employment Type dropdown (#hrms-create-hr_employment_type_label) and read its options, then close it"
+      - "3. Open the Department dropdown (#hrms-create-hr_employment_department_label) and read its options"
+    assertions:
+      - employment_type_options_match_test_data   # Others, Temporary, Permanent
+      - department_options_match_test_data   # Other, MISAU, eGov, CHAI, NMCP
+    test_data_ref: USR-08-H2
+    coverage_note: >
+      Exact short lists from MDMS; a missing or extra option is caught.
+
+  - id: USR-08-H3
+    title: Offer the Designation, Roles and Gender choices
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Open the Designation dropdown (#hrms-create-hr_employment_designation_label) and count its options, then close it"
+      - "3. Open the Roles multi-select and count its options, then close it"
+    assertions:
+      - designation_option_count_matches_test_data   # 29 on 2026-11-16
+      - roles_option_count_matches_test_data   # 48 plus "Select all" on 2026-11-16
+      - gender_options_female_and_male
+    test_data_ref: USR-08-H3
+    coverage_note: >
+      The long lists, checked by count only (the team may add designations or roles), and the gender choices.
+
+  - id: USR-08-H4
+    title: Add a second jurisdiction area and remove it again
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Click Add Jurisdiction"
+      - "3. Wait for the Area 2 block to appear with its own Country dropdown (observed live 2026-11-16)"
+      - "4. Click the red delete (trash) icon of the Area 2 block (contract gap; selector confirmed at /playwright-gen)"
+    assertions:
+      - only_area_1_remains
+      - one_jurisdiction_country_dropdown
+    test_data_ref: USR-08-H4
+    coverage_note: >
+      Multiple jurisdictions (add and remove an area); every other case uses Area 1 only.
+
+rbac_checks:
+  - id: USR-08-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /mdms-v2/v1/_search (observed live 2026-11-16 on /payments-ui/employee/hrms/create; no API contract yet)"
+    expected_status: 401

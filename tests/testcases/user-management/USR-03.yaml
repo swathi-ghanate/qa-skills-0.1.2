@@ -1,0 +1,109 @@
+module: user-management
+flow_id: USR-03
+flow_name: search_by_username
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_hrms_inbox, home]
+
+cases:
+  - id: USR-03-H1
+    title: Find exactly the test account when searching its own username
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "Only the test account's own username (QA_USERNAME from .env) is searched, so no other person's data is used"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill the Username field (input name=codes) with QA_USERNAME from .env"
+      - "3. Click Search and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_request_has_codes_parameter
+      - exactly_one_result_row
+      - result_username_link_is_own_username
+    test_data_ref: USR-03-H1
+    coverage_note: >
+      The core search: a known username returns that one user, with its username as the link to the details page.
+
+  - id: USR-03-E1
+    title: Show "No Results Found" for an unknown username
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill the Username field (input name=codes) with the unknown username from test data USR-03-E1"
+      - "3. Click Search and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_response_has_zero_employees
+      - no_results_found_visible
+    test_data_ref: USR-03-E1
+    coverage_note: >
+      The empty-result path (observed live 2026-11-16: "No Results Found"), which H1 never reaches.
+
+  - id: USR-03-H2
+    title: Find the test account when searching its own name in Employee Name
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "Privacy: the name is read at run time from the saved session (Employee.user-info) and is never logged, written to a file or shown in a step title"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill the Employee Name field (input name=names) with the test account's own name from the saved session"
+      - "3. Click Search and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_request_has_names_parameter
+      - own_username_among_results   # other users with the same name may also appear; only the presence of the own username is checked
+    test_data_ref: USR-03-H2
+    coverage_note: >
+      Search by name, a different search field (names) from H1 (codes).
+
+  - id: USR-03-H3
+    title: Find the test account when searching its own mobile number
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "Privacy: the mobile number is read at run time from the saved session (Employee.user-info) and is never logged, written to a file or shown in a step title"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill the Mobile Number field (input name=phone) with the test account's own mobile number from the saved session"
+      - "3. Click Search and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_request_has_phone_parameter
+      - own_username_among_results
+    test_data_ref: USR-03-H3
+    coverage_note: >
+      Search by mobile number, the third search field (phone).
+
+rbac_checks:
+  - id: USR-03-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_search (observed live 2026-11-16; no API contract yet)"
+    expected_status: 401

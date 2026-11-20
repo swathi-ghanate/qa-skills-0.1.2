@@ -1,0 +1,74 @@
+{
+  "_comment": "Synthetic test data for tests/testcases/complaints. Option and boundary values observed live on 2026-11-16. TODAY is computed at run time. Mobile rule: 9 to 11 digits (form config, checked live 2026-11-20; it was 11 digits on 2026-11-16). Cases that really create a complaint (CMP-08) take the complainant mobile from .env QA_COMPLAINANT_MOBILE (a team-owned number) so no stranger gets the complaint SMS; the synthetic numbers below are used only in guarded cases where the create request is blocked.",
+  "CMP-01-H1": {},
+  "CMP-01-H2": {
+    "sections": ["Complaint Details", "Boundary Details", "Complainant Details", "Additional Details", "Complaint Location"]
+  },
+  "CMP-02-H1": {
+    "expectedOptions": [
+      "Other: Dept-Other",
+      "Performance Issue: Dept-eGov",
+      "Security Issue: Dept-eGov",
+      "Data Issue: Dept-eGov",
+      "User Account Issue: Dept-eGov",
+      "Technical Issue: Dept-eGov"
+    ]
+  },
+  "CMP-02-H2": { "complaintType": "Data Issue: Dept-eGov" },
+  "CMP-03-H1": { "date": "TODAY" },
+  "CMP-03-E1": { "date": "TOMORROW" },
+  "CMP-04-H1": {
+    "boundary": {
+      "Country": "Sierra Leone",
+      "Province": "North West",
+      "District": "Kambia",
+      "Chiefdom": "Bramaia Chiefdom",
+      "PHU": "Gbolon",
+      "Distribution Point": "Fatmalaia",
+      "Community": "Baimbaya"
+    }
+  },
+  "CMP-04-E1": {
+    "boundary": { "Country": "Sierra Leone", "Province": "North West", "District": "Kambia", "Chiefdom": "Bramaia Chiefdom" },
+    "changedProvince": "Province1"
+  },
+  "CMP-05-H1": {},
+  "CMP-05-H2": {},
+  "CMP-06-E1": {
+    "expectedErrors": ["Required", "Complainant's name is Invalid", "Please provide a valid Mobile Number"],
+    "expectedAlert": "Please enter all mandatory fields"
+  },
+  "CMP-06-E2": { "complainantName": "QA Test Complainant", "mobileNumber": "76123456", "expectedError": "Please provide a valid Mobile Number" },
+  "CMP-06-E3": { "complainantName": "QA-Test 123 !@#", "mobileNumber": "23276123456", "expectedError": "Complainant's name is Invalid" },
+  "CMP-06-E4": { "complaintType": "Other: Dept-Other", "date": "TODAY", "boundary": { "Country": "Sierra Leone" }, "complainantName": "QA Test Complainant", "mobileNumber": "23276123456", "expectedError": "Required", "expectedAlert": "Please enter all mandatory fields" },
+  "CMP-06-E5": { "complainantName": "QA Test Complainant", "mobileNumber": "232761234567", "expectedError": "Please provide a valid Mobile Number" },
+  "CMP-06-E6": { "complaintType": "Other: Dept-Other", "date": "TODAY", "complainantName": "QA Test Complainant", "mobileNumber": "761234567", "description": "QA-TEST guard check, the create request is blocked", "expectedError": "Required", "expectedAlert": "Please enter all mandatory fields" },
+  "CMP-08-H1": {
+    "complaintType": "Other: Dept-Other",
+    "date": "TODAY",
+    "boundary": { "Country": "Sierra Leone" },
+    "complaintFor": "Another User",
+    "complainantName": "QA Test Complainant",
+    "mobileNumber": "env:QA_COMPLAINANT_MOBILE",
+    "description": "QA-TEST automated complaint created by Playwright. Please close it; no action needed."
+  },
+  "CMP-08-H2": {
+    "complaintType": "Technical Issue: Dept-eGov",
+    "date": "TODAY",
+    "boundary": {
+      "Country": "Sierra Leone",
+      "Province": "North West",
+      "District": "Kambia",
+      "Chiefdom": "Bramaia Chiefdom",
+      "PHU": "Gbolon",
+      "Distribution Point": "Fatmalaia",
+      "Community": "Baimbaya"
+    },
+    "complaintFor": "Another User",
+    "complainantName": "QA Test Complainant",
+    "mobileNumber": "env:QA_COMPLAINANT_MOBILE",
+    "description": "QA-TEST automated complaint (full location) created by Playwright. Please close it; no action needed."
+  },
+  "CMP-09-H1": {},
+  "CMP-10-H1": {}
+}

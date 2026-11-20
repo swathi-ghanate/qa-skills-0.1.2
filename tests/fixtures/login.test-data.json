@@ -1,0 +1,8 @@
+{
+  "_comment": "Synthetic, non-secret test data for tests/testcases/login. Real credentials come only from .env (QA_USERNAME / QA_PASSWORD). expectedError observed live on 2026-11-16 for both wrong password and unknown username.",
+  "AUTH-03-E1": { "wrongPassword": "QA-TEST-wrong-password-E1", "expectedError": "Invalid login credentials" },
+  "AUTH-03-E2": { "wrongPassword": "QA-TEST-wrong-password-E2", "attempts": 5 },
+  "AUTH-04-E1": { "username": "qa-test-unknown-user", "password": "QA-TEST-unknown-user-pass", "expectedError": "Invalid login credentials" },
+  "AUTH-09-H1": { "password": "QA-TEST-Visible-Pass-H1" },
+  "AUTH-09-H2": { "password": "QA-TEST-Visible-Pass-H2" }
+}

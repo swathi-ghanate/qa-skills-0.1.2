@@ -1,0 +1,156 @@
+module: user-management
+flow_id: USR-13
+flow_name: take_action_on_searched_user
+priority: P1
+type: [e2e]
+tags: [regression]
+
+# Search a user, click the username, then use Take Action. Three actions exist (observed live 2026-11-16):
+#   Edit Employee, Deactivate Employee, Edit Campaign Assignment.
+# Deactivate Employee is NOT offered on the logged-in account itself (only two actions there).
+# H1-H2 are read-only on the test login account (forms opened, nothing submitted).
+# H3-H5 act on the run's test user created by USR-10-H1 (one test user per run, decided 2026-11-18), never on real
+# staff or the test login account. They run in tests/e2e/user-management/USR-lifecycle.e2e.spec.ts in the order
+# USR-10-H1, USR-11-H1, H3, H5, H4: H4 deactivates the user, so it runs last and leaves no active test user.
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /egov-hrms/employees/_create   # assumed DIGIT HRMS endpoint (H3-H5 create their own test user); confirm on the first run
+    service: egov-hrms
+  - method: POST
+    path: /egov-hrms/employees/_update   # assumed: deactivation is an employee update in DIGIT HRMS; confirm on the first run
+    service: egov-hrms
+
+ui_pages: [payments_ui_employee_hrms_inbox, payments_ui_employee_hrms_create, home]   # the details, edit and assign-campaign pages are not in the contract
+
+cases:
+  - id: USR-13-H1
+    title: Open the Edit Employee form of a searched user without saving
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so nothing is saved"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "Uses only the test login account's own record (QA_USERNAME); Submit is never clicked"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Search the Username field (input name=codes) for QA_USERNAME from .env and click the username link in the result row"
+      - "3. Click Take Action, then Edit Employee"
+      - "4. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_starts_with_payments_ui_employee_hrms_edit
+      - edit_form_username_is_own_username   # field id ends in -hr_emp_id_label (the id embeds the username)
+      - edit_form_sections_visible   # Login Details, Personal Details, Employee Details
+      - edit_form_submit_visible
+    test_data_ref: USR-13-H1
+    coverage_note: >
+      Action 1 (Edit Employee) opens a prefilled form for the chosen user; USR-11 covers actually saving an edit.
+
+  - id: USR-13-H2
+    title: Open the Edit Campaign Assignment page of a searched user without assigning
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so nothing is saved"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "Uses only the test login account's own record (QA_USERNAME); Assign and Unassign are never clicked"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Search the Username field (input name=codes) for QA_USERNAME from .env and click the username link in the result row"
+      - "3. Click Take Action, then Edit Campaign Assignment"
+      - "4. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_starts_with_payments_ui_employee_hrms_update_assign_campaign
+      - search_campaign_fields_visible   # Project type, Project name, Project number, Jurisdiction, Start date, End date
+      - assign_and_unassign_buttons_visible
+    test_data_ref: USR-13-H2
+    coverage_note: >
+      Action 3 (Edit Campaign Assignment) opens its campaign search page; H5 covers assigning and unassigning.
+
+  - id: USR-13-H3
+    title: Offer all three actions in Take Action for a test-created user
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Uses the run's test user created by USR-10-H1 (or QA_LIFECYCLE_USERNAME, a qatest<digits> user from an earlier run)"
+      - "No action in the menu is clicked"
+    steps:
+      - "1. Take the username of the test user created by USR-10-H1 in this run"
+      - "2. Open /payments-ui/employee/hrms/inbox, pass the hierarchy step, search the new username and click its username link"
+      - "3. Click Take Action"
+    assertions:
+      - action_menu_shows_three_actions   # Edit Employee, Deactivate Employee, Edit Campaign Assignment
+    test_data_ref: USR-13-H3
+    coverage_note: >
+      The full three-action menu, seen on a user that is not the logged-in account (USR-06-H2 shows only two on the own account).
+
+  - id: USR-13-H4
+    title: Deactivate a test-created user and find it with the Inactive filter
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "SIDE EFFECT: deactivates the run's test user created by USR-10-H1 (or QA_LIFECYCLE_USERNAME); runs last in the lifecycle"
+      - "Approved 2026-11-18: tests may deactivate the users they create (this also cleans up test users)"
+      - "Deactivation popup (captured 2026-11-18): Reason for Deactivation * (reason Others), Order No., Effective Date (today), Supporting Documents, Remarks; button Deactivate Employee"
+    steps:
+      - "1. Take the username of the test user created by USR-10-H1 in this run"
+      - "2. Open /payments-ui/employee/hrms/inbox, pass the hierarchy step, search the new username and click its username link"
+      - "3. Click Take Action, then Deactivate Employee"
+      - "4. Fill the deactivation details from test data USR-13-H4 and confirm"
+      - "5. Wait for the POST /egov-hrms/employees/_update response"
+      - "6. Open /payments-ui/employee/hrms/inbox, pass the hierarchy step, choose the Inactive Employment Status filter, search the new username"
+    assertions:
+      - deactivate_request_accepted   # 202 Accepted, same egov-hrms _update as Edit Employee
+      - user_found_with_inactive_filter
+    test_data_ref: USR-13-H4
+    coverage_note: >
+      Action 2 (Deactivate Employee), proven by the Inactive filter finding the user; no other case changes a user's status.
+
+  - id: USR-13-H5
+    title: Assign a campaign to a test-created user and unassign it again
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "SIDE EFFECT: changes only the campaign assignment of the run's test user created by USR-10-H1 (or QA_LIFECYCLE_USERNAME)"
+      - "Campaign: test_q2 (PJT-2026-11-06-1289037), named 2026-11-18 (test data USR-13-H5)"
+    steps:
+      - "1. Take the username of the test user created by USR-10-H1 in this run"
+      - "2. Open /payments-ui/employee/hrms/inbox, pass the hierarchy step, search the new username and click its username link"
+      - "3. Click Take Action, then Edit Campaign Assignment"
+      - "4. Search for the campaign from test data USR-13-H5, click Assign on its row, fill Assigned from Date with today in the Campaign Assignment dialog and Submit; wait for the save to finish"
+      - "5. Click Unassign on the same row and wait for the save to finish"
+    # Observed 2026-11-18: Assign sends POST /project/staff/v1/_create and Unassign POST /project/staff/v1/_delete (no
+    # confirmation), both 202 Accepted and saved asynchronously, so the case reloads the list after each save.
+    assertions:
+      - campaign_not_assigned_at_end   # the row offers Assign again after Unassign
+      - no_error_shown
+    test_data_ref: USR-13-H5
+    coverage_note: >
+      Action 3 end to end (assign and unassign), leaving the test user as it started; H2 only opens the page.
+
+rbac_checks:
+  - id: USR-13-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_update (assumed; confirm with qa-kit api-scrape; send an invalid payload only, so an auth bug cannot change a user)"
+    expected_status: 401

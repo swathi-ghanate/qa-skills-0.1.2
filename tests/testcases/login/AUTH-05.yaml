@@ -1,0 +1,65 @@
+module: login
+flow_id: AUTH-05
+flow_name: protected_workbench_pages_redirect_to_login
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+actors:
+  - unauthenticated
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee, workbench_ui_employee_campaign_commodity_campaig, workbench_ui_employee_user_login]
+
+cases:
+  - id: AUTH-05-H1
+    title: Redirect a logged-out visitor from the workbench home to the workbench login
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee"
+    steps:
+      - "1. Open /workbench-ui/employee"
+      - "2. Wait for the URL to become /workbench-ui/employee/user/login (client-side redirect, up to about 15 s on a cold load)"
+      - "3. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_workbench_ui_employee_user_login
+      - username_field_visible
+    test_data_ref: AUTH-05-H1
+    coverage_note: >
+      Route protection for the workbench home (is_protected true), the page the team's login URL points to.
+
+  - id: AUTH-05-H2
+    title: Redirect a logged-out visitor from a workbench module page to the workbench login
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee/campaign/commodity-campaigns"
+    steps:
+      - "1. Open /workbench-ui/employee/campaign/commodity-campaigns"
+      - "2. Wait for the URL to become /workbench-ui/employee/user/login"
+      - "3. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_workbench_ui_employee_user_login
+      - username_field_visible
+    test_data_ref: AUTH-05-H2
+    coverage_note: >
+      Deep-link protection: a module page, not the home page, also redirects (observed in the 13 Nov anonymous scrape).
+
+rbac_checks:
+  - id: AUTH-05-RBAC-1
+    actor: unauthenticated
+    endpoint: "GET <TBD: protected API called by /workbench-ui/employee; no API contract yet, run qa-kit api-scrape>"
+    expected_status: 401
+  - id: AUTH-05-RBAC-2
+    actor: unauthenticated
+    endpoint: "GET <TBD: protected API called by /workbench-ui/employee/campaign/commodity-campaigns>"
+    expected_status: 401

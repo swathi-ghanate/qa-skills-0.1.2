@@ -1,0 +1,64 @@
+module: complaints-inbox
+flow_id: INB-05
+flow_name: clear_search
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-05. Logged-out API check for the inbox search: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20; not in contract/api-contract.json
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-05-H1
+    title: Empty the search fields and bring back the default list when Clear Search is clicked
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Fill complaintnumber_7836f5 with the QA-TEST complaint number from test data INB-05-H1, click Search and wait for exactly 1 result row"
+      - "3. Click clear_search_c692f5 and wait for the next POST /inbox/v2/_search response"
+    assertions:
+      - complaint_number_field_empty
+      - mobile_number_field_empty
+      - last_search_request_has_no_search_criteria   # moduleSearchCriteria {} (observed 2026-11-20)
+      - result_rows_more_than_1   # the default list; holds while the inbox has more than 1 complaint (18 on 2026-11-20)
+    test_data_ref: INB-05-H1
+    coverage_note: >
+      Reset of the search card back to the default list; no other case clicks Clear Search.
+
+  - id: INB-05-H2
+    title: Keep the chosen Status filter when Clear Search is clicked
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Tick the Status checkbox from test data INB-05-H2 (contract gap: the input[type=checkbox] in the option whose text is Pending Assignment) and click apply_18d6c0"
+      - "3. Fill complaintnumber_7836f5 with the QA-TEST complaint number from test data INB-05-H2 and click Search"
+      - "4. Click clear_search_c692f5 and wait for the next POST /inbox/v2/_search response"
+    assertions:
+      - complaint_number_field_empty
+      - status_checkbox_still_checked   # expected per the plan; Clear Search should only reset the search card
+    test_data_ref: INB-05-H2
+    coverage_note: >
+      Different starting state from H1 (a filter is set): proves Clear Search and Clear All (INB-07) act on separate panels.

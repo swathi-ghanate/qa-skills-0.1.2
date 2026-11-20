@@ -1,0 +1,246 @@
+{
+  "_comment": "Synthetic test data for tests/testcases/user-management (observed live 2026-11-16). No real person's data. Passwords for created users are generated at run time and never stored. env:NAME values come from .env; generated:unique mobile numbers are synthetic, generated at run time and never logged (decided 2026-11-18). <TBD> values need a team answer; the cases that use them stop before creating anything. session:KEY values are read at run time from the saved login and never logged.",
+  "USR-01-H1": {
+    "hierarchyType": "ADMIN_KAMBIA",
+    "tableHeaders": [
+      "Username",
+      "Name",
+      "No of Roles",
+      "Jurisdiction",
+      "Designation",
+      "Department"
+    ]
+  },
+  "USR-02-H1": {
+    "hierarchyOptions": [
+      "ADMIN_KAMBIA"
+    ]
+  },
+  "USR-02-E1": {
+    "expectedError": "Please fill the mandatory field"
+  },
+  "USR-03-H1": {
+    "username": "env:QA_USERNAME"
+  },
+  "USR-03-E1": {
+    "username": "QA-TEST-NO-SUCH-USER-000",
+    "expectedText": "No Results Found"
+  },
+  "USR-03-H2": {
+    "employeeName": "session:Employee.user-info.name"
+  },
+  "USR-03-H3": {
+    "mobileNumber": "session:Employee.user-info.mobileNumber"
+  },
+  "USR-04-H1": {
+    "expectedQuery": {
+      "limit": "10",
+      "offset": "0",
+      "sortBy": "lastModifiedTime",
+      "sortOrder": "DESC"
+    }
+  },
+  "USR-04-H2": {},
+  "USR-04-H3": {
+    "employeeName": "QA Test Clear Check",
+    "username": "qa-test-clear-check"
+  },
+  "USR-04-H4": {
+    "status": "Inactive"
+  },
+  "USR-04-H5": {
+    "status": "Inactive"
+  },
+  "USR-04-H6": {
+    "role": "PGR Administrator"
+  },
+  "USR-05-H1": {
+    "expectedOffset": "10"
+  },
+  "USR-06-H1": {
+    "username": "env:QA_USERNAME",
+    "sections": [
+      "Employee Details",
+      "Login Details",
+      "Personal Details",
+      "Jurisdiction Details",
+      "Assignment Details"
+    ]
+  },
+  "USR-06-H2": {
+    "username": "env:QA_USERNAME",
+    "actions": [
+      "Edit Employee",
+      "Edit Campaign Assignment"
+    ],
+    "notOffered": [
+      "Deactivate Employee"
+    ]
+  },
+  "USR-07-H1": {
+    "hierarchyType": "ADMIN_KAMBIA"
+  },
+  "USR-08-H1": {
+    "sections": [
+      "Login Details",
+      "Personal Details",
+      "Employee Details"
+    ],
+    "requiredLabels": [
+      "Username",
+      "Password",
+      "Confirm Password",
+      "Name",
+      "Mobile Number",
+      "Gender",
+      "Date of Birth",
+      "Employment Type",
+      "Date of Appointment",
+      "Department",
+      "Designation",
+      "Roles"
+    ],
+    "optionalLabels": [
+      "Email",
+      "Correspondence Address"
+    ]
+  },
+  "USR-08-H2": {
+    "employmentTypes": [
+      "Others",
+      "Temporary",
+      "Permanent"
+    ],
+    "departments": [
+      "Other",
+      "MISAU",
+      "eGov",
+      "CHAI",
+      "NMCP"
+    ]
+  },
+  "USR-08-H3": {
+    "designationCount": 29,
+    "roleCount": 48,
+    "genders": [
+      "Female",
+      "Male"
+    ]
+  },
+  "USR-08-H4": {
+    "areasAfterAdd": [
+      "Area 1*",
+      "Area 2*"
+    ],
+    "areasAfterRemove": [
+      "Area 1*"
+    ]
+  },
+  "USR-09-H1": {
+    "mobileNumber": "076123456"
+  },
+  "USR-09-H2": {
+    "minimumAgeYears": 18
+  },
+  "USR-09-E1": {
+    "password": "abc",
+    "expectedError": "Passwords should be 8-15 characters alphanumeric value. Special Characters Allowed: @,#,$,%"
+  },
+  "USR-09-E2": {
+    "password": "QaTest2026a",
+    "confirmPassword": "QaTest2026b",
+    "expectedError": "Passwords doesn't match"
+  },
+  "USR-09-E3": {
+    "mobileNumber": "07612345",
+    "expectedError": "Invalid Mobile number"
+  },
+  "USR-09-E4": {
+    "email": "not-an-email",
+    "expectedError": "Please enter a valid email"
+  },
+  "USR-09-E5": {
+    "name": "QA 123"
+  },
+  "USR-09-E6": {
+    "mobileNumber": "0761234567",
+    "expectedError": "Invalid Mobile number"
+  },
+  "USR-10-H1": {
+    "usernamePrefix": "qatest",
+    "name": "QA Test User",
+    "mobileNumber": "generated:unique",
+    "gender": "Female",
+    "ageYears": 30,
+    "employmentType": "Temporary",
+    "department": "Other",
+    "designation": "Accountant",
+    "role": "Dashboard Viewer",
+    "jurisdiction": {
+      "Country": "Sierra Leone"
+    }
+  },
+  "USR-10-E1": {
+    "username": "env:QA_USERNAME",
+    "name": "QA Test User",
+    "mobileNumber": "generated:unique",
+    "gender": "Female",
+    "ageYears": 30,
+    "employmentType": "Temporary",
+    "department": "Other",
+    "designation": "Accountant",
+    "role": "Dashboard Viewer",
+    "jurisdiction": {
+      "Country": "Sierra Leone"
+    }
+  },
+  "USR-11-H1": {
+    "newDesignation": "Superintendent"
+  },
+  "USR-13-H1": {
+    "username": "env:QA_USERNAME",
+    "expectedPathPrefix": "/payments-ui/employee/hrms/edit/",
+    "sections": [
+      "Login Details",
+      "Personal Details",
+      "Employee Details"
+    ]
+  },
+  "USR-13-H2": {
+    "username": "env:QA_USERNAME",
+    "expectedPathPrefix": "/payments-ui/employee/hrms/update/assign-campaign/",
+    "fields": [
+      "Project type",
+      "Project name",
+      "Project number",
+      "Jurisdiction",
+      "Start date",
+      "End date"
+    ],
+    "buttons": [
+      "Search",
+      "Clear",
+      "Assign",
+      "Unassign"
+    ]
+  },
+  "USR-13-H3": {
+    "actions": [
+      "Edit Employee",
+      "Deactivate Employee",
+      "Edit Campaign Assignment"
+    ]
+  },
+  "USR-13-H4": {
+    "deactivation": {
+      "reason": "Others",
+      "remarks": "QA-TEST automated deactivation of a test user"
+    }
+  },
+  "USR-13-H5": {
+    "campaign": "test_q2",
+    "campaignNumber": "PJT-2026-11-06-1289037"
+  },
+  "USR-12-H1": {},
+  "USR-12-H2": {}
+}

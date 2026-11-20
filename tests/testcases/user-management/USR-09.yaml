@@ -1,0 +1,184 @@
+module: user-management
+flow_id: USR-09
+flow_name: create_user_field_rules
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_hrms_create, home]
+
+# Every case: synthetic values only; Submit stays disabled and create/update requests are aborted, so nothing is saved.
+cases:
+  - id: USR-09-H1
+    title: Accept a 9-digit mobile number
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+      - "Mobile rule (user, 2026-11-20; confirmed live the same day in the form and its MDMS config, minLength 9 / maxLength 9): exactly 9 digits, any first digit"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Mobile Number (#hrms-create-hr_mob_no_label) with the valid synthetic number from test data USR-09-H1 and move focus away"
+    assertions:
+      - mobile_number_error_not_shown
+    test_data_ref: USR-09-H1
+    coverage_note: >
+      Exactly 9 digits is accepted, and the leading 0 of the local format is kept; E3 and E6 cover 8 and 10 digits.
+
+  - id: USR-09-H2
+    title: Limit Date of Birth to users aged 18 or more and Date of Appointment to today
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+    assertions:
+      - date_of_birth_max_is_today_minus_18_years   # computed at run time
+      - date_of_appointment_max_is_today
+    test_data_ref: USR-09-H2
+    coverage_note: >
+      The two date limits set by the app (observed live 2026-11-16).
+
+  - id: USR-09-E1
+    title: Reject a password shorter than 8 characters
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Password (#hrms-create-hr_emp_password_label) with the short value from test data USR-09-E1 and move focus away"
+    assertions:
+      - password_rule_error_visible   # "Passwords should be 8-15 characters alphanumeric value. Special Characters Allowed: @,#,$,%"
+      - submit_disabled
+    test_data_ref: USR-09-E1
+    coverage_note: >
+      Below the 8-character minimum of the password rule.
+
+  - id: USR-09-E2
+    title: Reject a Confirm Password that does not match
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Password (#hrms-create-hr_emp_password_label) with the valid synthetic password from test data USR-09-E2"
+      - "3. Fill Confirm Password (#hrms-create-hr_emp_confirm_password_label) with the different value from test data USR-09-E2 and move focus away"
+    assertions:
+      - password_mismatch_error_visible   # "Passwords doesn't match"
+      - submit_disabled
+    test_data_ref: USR-09-E2
+    coverage_note: >
+      Two valid passwords that differ; E1 covers an invalid one.
+
+  - id: USR-09-E3
+    title: Reject a mobile number that is too short
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Mobile Number (#hrms-create-hr_mob_no_label) with the short value from test data USR-09-E3 and move focus away"
+    assertions:
+      - mobile_number_error_visible   # "Invalid Mobile number"
+      - submit_disabled
+    test_data_ref: USR-09-E3
+    coverage_note: >
+      One digit below the 9-digit rule (8 digits); E6 covers one digit above.
+
+  - id: USR-09-E4
+    title: Reject an email address without @ and domain
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Email (#hrms-create-hr_email_label) with the invalid value from test data USR-09-E4 and move focus away"
+    assertions:
+      - email_error_visible   # "Please enter a valid email"
+      - submit_disabled
+    test_data_ref: USR-09-E4
+    coverage_note: >
+      The optional Email field still validates its format.
+
+  - id: USR-09-E5
+    title: Reject a name that contains digits
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+      - "Finding: the app shows the misleading text Required here; the case asserts that an error is shown, not its exact text"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Name (#hrms-create-hr_emp_name_label) with the value with digits from test data USR-09-E5 and move focus away"
+    assertions:
+      - name_error_visible
+      - submit_disabled
+    test_data_ref: USR-09-E5
+    coverage_note: >
+      Name format check; asserts the rejection itself so a later message fix does not break it.
+
+  - id: USR-09-E6
+    title: Reject a 10-digit mobile number
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+      - "Mobile rule (user, 2026-11-20; confirmed live the same day): exactly 9 digits. The old first-digit rule (6-9) no longer exists, so this case now checks the length"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Mobile Number (#hrms-create-hr_mob_no_label) with the number from test data USR-09-E6 and move focus away"
+    assertions:
+      - mobile_number_error_visible
+      - submit_disabled
+    test_data_ref: USR-09-E6
+    coverage_note: >
+      One digit above the 9-digit rule (10 digits, the old rule's length); with E3 it pins the length from both sides.
+
+rbac_checks:
+  - id: USR-09-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_create (assumed DIGIT HRMS create endpoint; confirm with qa-kit api-scrape; send an invalid payload only)"
+    expected_status: 401

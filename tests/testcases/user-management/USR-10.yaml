@@ -1,0 +1,97 @@
+module: user-management
+flow_id: USR-10
+flow_name: create_test_user
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+# Creates a REAL login account on the live Sierra Leone environment: approved by the team on 2026-11-16.
+# Accounts cannot be deleted. The new username is recorded in the Allure report.
+# ONE TEST USER PER RUN (decided 2026-11-18): H1 creates the run's only test user; USR-11-H1, USR-13-H3, USR-13-H5 and
+# finally USR-13-H4 (deactivation) act on it, in that order (tests/e2e/user-management/USR-lifecycle.e2e.spec.ts).
+# Mobile number: the form refuses a number any other employee already has ("Mobile number already exist!", observed
+# 2026-11-18), so each created user gets a synthetic 9-digit number generated at run time (decided 2026-11-18,
+# accepting that DIGIT may text the account details to it). Role: Dashboard Viewer (decided 2026-11-18).
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /egov-hrms/employees/_create   # assumed DIGIT HRMS endpoint; confirm on the first run
+    service: egov-hrms
+
+ui_pages: [payments_ui_employee_hrms_create, payments_ui_employee_hrms_inbox, home]
+
+cases:
+  - id: USR-10-H1
+    title: Create a test user with every required field and find it by its username
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+      - "SIDE EFFECT: creates one real login account per run (approved 2026-11-16); username qatest + run timestamp"
+      - "The role in test data USR-10-H1 is set by the team (the test stops before creating anything while it is TBD)"
+      - "The mobile number is synthetic (9 digits, never starting with 0; rule confirmed 2026-11-20), generated at run time and never logged"
+      - "The password is generated at run time and never stored or logged"
+      - "The new username is kept for the later lifecycle cases of this run (USR-11-H1, USR-13-H3, USR-13-H5, USR-13-H4)"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Username (#hrms-create-hr_emp_id_label) with qatest plus the run timestamp"
+      - "3. Fill Password and Confirm Password with the same generated password"
+      - "4. Fill Name with the value from test data USR-10-H1 and Mobile Number with a synthetic number generated at run time"
+      - "5. Choose the gender from test data and fill Date of Birth with today minus the age in test data"
+      - "6. Choose Employment Type, Department and Designation from test data and fill Date of Appointment with today"
+      - "7. Choose the role from test data in the Roles multi-select"
+      - "8. Choose the jurisdiction Country from test data in Area 1"
+      - "9. Wait for Submit to be enabled"
+      - "10. Click Submit and wait for the POST /egov-hrms/employees/_create response (if the form says the mobile number already exists, fill a new synthetic number and submit again)"
+      - "11. Wait for the success screen, then open /payments-ui/employee/hrms/inbox, pass the hierarchy step and search the new username"
+    # Observed 2026-11-18: Submit checks the mobile number, then opens a "Ready to Submit ?" dialog whose Submit sends the
+    # create request; the app then opens /payments-ui/employee/hrms/response. egov-hrms answers 202 Accepted.
+    assertions:
+      - create_request_accepted   # 202 Accepted (observed 2026-11-18)
+      - new_user_found_by_username   # exactly 1 row whose username link equals the new username
+    test_data_ref: USR-10-H1
+    coverage_note: >
+      The only end-to-end user creation; the follow-up search proves the user really exists.
+
+  - id: USR-10-E1
+    title: Reject a new user whose username already exists
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/hrms/create"
+      - "The existing username is the test account's own (QA_USERNAME); it must be refused, so no user is created"
+      - "The form does not check duplicates while typing (observed live 2026-11-16: no message and no request on leaving the field), so the case must submit"
+      - "Observed 2026-11-18: after the confirm dialog the app checks the username (_search?codes=...), shows \"Username exists\" and sends no create request"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so a duplicate can never be created"
+      - "Same form data rules as USR-10-H1: the role in test data and a synthetic mobile number (so the form's mobile check passes and the server sees the duplicate username)"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/create, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Fill Username (#hrms-create-hr_emp_id_label) with QA_USERNAME from .env"
+      - "3. Fill every other required field as in steps 3-8 of USR-10-H1 (test data USR-10-E1, generated password, synthetic mobile number)"
+      - "4. Wait for Submit to be enabled"
+      - "5. Click Submit and confirm the \"Ready to Submit ?\" dialog (a new synthetic number is tried if the mobile number already exists)"
+    assertions:
+      - duplicate_username_error_visible   # "Username exists" (observed 2026-11-18)
+      - no_create_request_sent
+      - still_on_create_user_page
+    test_data_ref: USR-10-E1
+    coverage_note: >
+      Uniqueness of usernames; H1 always uses a new username.
+
+rbac_checks:
+  - id: USR-10-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_create (assumed; confirm with qa-kit api-scrape; send an invalid payload only, so an auth bug cannot create a user)"
+    expected_status: 401

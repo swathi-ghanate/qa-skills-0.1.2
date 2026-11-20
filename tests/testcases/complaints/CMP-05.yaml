@@ -1,0 +1,65 @@
+module: complaints
+flow_id: CMP-05
+flow_name: complainant_myself_or_another_user
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-05-H1
+    title: Fill and lock the complainant's name and number when Myself is chosen
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "Never log or assert the prefilled values (the test account's personal data); assert only filled/empty and read-only/editable"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click field_4_cba6ab (Myself: the first radio with id pgr-create-complaint-es_createcomplaint_for)"
+    assertions:
+      - myself_radio_checked
+      - complainant_name_filled_and_read_only
+      - complainant_contact_number_filled_and_read_only
+    test_data_ref: CMP-05-H1
+    coverage_note: >
+      The account-prefill path: the complainant details come from the logged-in user.
+
+  - id: CMP-05-H2
+    title: Clear and unlock the complainant's name and number when switching to Another User
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click field_4_cba6ab (Myself) and wait for complainantname_fc3612 to be filled"
+      - "3. Click field_5_cba6ab (Another User: the second radio with the same id)"
+    assertions:
+      - another_user_radio_checked
+      - complainant_name_empty_and_editable
+      - complainant_contact_number_empty_and_editable
+    test_data_ref: CMP-05-H2
+    coverage_note: >
+      The switch back from Myself; checks the prefilled values are cleared and not left locked.
+
+rbac_checks:
+  - id: CMP-05-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: user search API called by /payments-ui/employee/pgr/create-complaint; run qa-kit api-scrape>"
+    expected_status: 401

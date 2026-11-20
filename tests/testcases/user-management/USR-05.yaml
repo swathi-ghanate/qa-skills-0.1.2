@@ -1,0 +1,44 @@
+module: user-management
+flow_id: USR-05
+flow_name: user_list_paging
+priority: P2
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_hrms_inbox, home]
+
+cases:
+  - id: USR-05-H1
+    title: Load the second page of users with the next-page button
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /payments-ui/employee/hrms/inbox"
+      - "More than 10 users exist in the tenant (the default list returned a full page of 10 on 2026-11-16)"
+    steps:
+      - "1. Open /payments-ui/employee/hrms/inbox, wait for animation_1dcbe0 to be hidden, choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next"
+      - "2. Wait for the results rows to render and the next-page button (#pagination-next-page) to be enabled"
+      - "3. Click #pagination-next-page and wait for the POST /egov-hrms/employees/_search response"
+    assertions:
+      - search_request_offset_is_10
+      - result_rows_at_least_1
+      - first_page_button_enabled
+    test_data_ref: USR-05-H1
+    coverage_note: >
+      Paging; every other case stays on the first page.
+
+rbac_checks:
+  - id: USR-05-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_search (observed live 2026-11-16; no API contract yet)"
+    expected_status: 401

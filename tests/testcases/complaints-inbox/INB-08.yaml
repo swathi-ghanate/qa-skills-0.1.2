@@ -1,0 +1,125 @@
+module: complaints-inbox
+flow_id: INB-08
+flow_name: inbox_paging
+priority: P2
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-08. Needs more than 10 complaints in the default list (18 on 2026-11-20);
+# each case stops with a clear message when the total is 10 or fewer.
+# rows_per_page_70af54's contract selector (getByRole button 'Rows per page') matches 0 elements: it is a <select>.
+# Use getByRole('combobox', { name: 'Rows per page' }) (1 match live). Logged-out API check: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20 (limit / offset in the body); not in contract/api-contract.json
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-08-H1
+    title: Disable First and Previous on the first page and show the 1-10 count
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the result rows to render (paging buttons are all disabled until then)"
+    assertions:
+      - first_page_button_disabled   # first_page_b08b28
+      - previous_page_button_disabled   # previous_page_131236
+      - next_page_button_enabled   # next_page_4297e0
+      - page_count_text_is_first_page   # "1-10 of N"
+    test_data_ref: INB-08-H1
+    coverage_note: >
+      Starting state of the pager; the user-management pager had a TotalCount defect (USR-05-H1), so the enabled Next is checked explicitly.
+
+  - id: INB-08-H2
+    title: Load the second page with Next Page
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the result rows to render"
+      - "2. Click next_page_4297e0 and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - search_request_offset_is_10
+      - page_count_text_is_second_page   # "11-... of N"
+      - first_page_button_enabled
+      - result_rows_at_least_1
+    test_data_ref: INB-08-H2
+    coverage_note: >
+      Forward paging and the offset sent to the server.
+
+  - id: INB-08-H3
+    title: Return to the first page with Previous Page
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the result rows to render"
+      - "2. Click next_page_4297e0 and wait for the POST /inbox/v2/_search response"
+      - "3. Click previous_page_131236 and wait for the next POST /inbox/v2/_search response"
+    assertions:
+      - search_request_offset_is_0
+      - page_count_text_is_first_page
+    test_data_ref: INB-08-H3
+    coverage_note: >
+      Backward paging, which H2 (forward only) does not cover.
+
+  - id: INB-08-H4
+    title: Disable Next and Last on the last page
+    type: edge_case
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the result rows to render"
+      - "2. Click last_page_9cd9d1 and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - next_page_button_disabled
+      - last_page_button_disabled
+      - page_count_text_ends_at_total   # "...-N of N"
+    test_data_ref: INB-08-H4
+    coverage_note: >
+      Upper boundary of paging.
+
+  - id: INB-08-H5
+    title: Show up to 20 complaints when 20 rows per page is chosen
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the result rows to render"
+      - "2. Choose the value from test data INB-08-H5 in rows_per_page_70af54 (use getByRole('combobox', { name: 'Rows per page' }); the contract selector matches 0)"
+      - "3. Wait for the POST /inbox/v2/_search response"
+    assertions:
+      - search_request_limit_is_20
+      - result_rows_between_11_and_20   # N was 18 on 2026-11-20; with N <= 10 the case stops early
+    test_data_ref: INB-08-H5
+    coverage_note: >
+      Page-size change; the other options of Rows per page are not captured yet (read them on the first run).

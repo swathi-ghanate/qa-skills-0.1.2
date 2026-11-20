@@ -1,0 +1,21 @@
+{
+  "name": "qa-project",
+  "private": true,
+  "scripts": {
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:integration": "playwright test --project=integration",
+    "report": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "report:single": "node scripts/allure-report.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^22.0.0",
+    "allure-commandline": "^2.34.0",
+    "allure-js-commons": "^3.14.0",
+    "allure-playwright": "^3.0.0",
+    "dotenv": "^16.4.0",
+    "typescript": "^5.6.0"
+  }
+}

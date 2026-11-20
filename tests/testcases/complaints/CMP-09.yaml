@@ -1,0 +1,41 @@
+module: complaints
+flow_id: CMP-09
+flow_name: logged_out_cannot_open_create_complaint
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+actors:
+  - unauthenticated
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-09-H1
+    title: Redirect a logged-out visitor away from Create complaint
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "The test only checks the redirect; it never logs in on the payments-ui login (workbench login only)"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint"
+      - "2. Wait for the URL pathname to change away from /payments-ui/employee/pgr/create-complaint"
+    assertions:
+      - url_pathname_is_payments_ui_employee_user_login   # observed 2026-11-16 with an expired session; confirm with an empty one
+      - complaint_type_field_not_present
+    test_data_ref: CMP-09-H1
+    coverage_note: >
+      Route protection for the complaint form (is_protected: true); AUTH-05 covers workbench pages only.
+
+rbac_checks:
+  - id: CMP-09-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: an API called by /payments-ui/employee/pgr/create-complaint; run qa-kit api-scrape>"
+    expected_status: 401

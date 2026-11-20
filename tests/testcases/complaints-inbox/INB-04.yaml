@@ -1,0 +1,70 @@
+module: complaints-inbox
+flow_id: INB-04
+flow_name: search_by_date_range
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-04.
+# The picker works (corrected 2026-11-20 after the first test run): react-date-range (.rdrCalendarWrapper) opens from
+# the calendar icon after a click on the field; the field alone opens nothing. Dates are chosen with its month/year
+# selects and day buttons (button.rdrDay).
+# field_2_2ab45f's contract selector (getByRole textbox name 'field_2') matches 0 elements; use
+# input.digit-employee-select-wrap--elipses[readonly] and its following svg.cursorPointer (calendar icon).
+# Logged-out API check for the inbox search: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20; the date criteria field names are not observed yet
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-04-H1
+    title: Find a QA-TEST complaint by a date range that includes its filing date
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "The QA-TEST complaint in test data INB-04-H1 was filed on the date in that test data"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Click field_2_2ab45f (Date Range) or its calendar icon and wait for the calendar to be visible"
+      - "3. Choose the from and to dates from test data INB-04-H1"
+      - "4. Close the calendar and wait for field_2_2ab45f to show the chosen range"
+      - "5. Click Search (contract gap) and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - search_request_has_date_range   # field names (e.g. fromDate / toDate) not observed yet; record them on the first run
+      - known_qa_test_complaint_among_results
+    test_data_ref: INB-04-H1
+    coverage_note: >
+      Third search mode; the only case that exercises the date picker and the date criteria of the search request.
+
+  - id: INB-04-E1
+    title: Show no complaints for a date range before any complaint was filed
+    type: edge_case
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Open the Date Range calendar as in INB-04-H1 and choose the range from test data INB-04-E1"
+      - "3. Click Search and wait for the POST /inbox/v2/_search response"
+    assertions:
+      - result_rows_zero
+      - no_results_message_visible   # same message as INB-02-E1; capture on the first run
+    test_data_ref: INB-04-E1
+    coverage_note: >
+      Empty-result boundary of the date search (a range in the past with no complaints); added by test design, not listed in the plan.

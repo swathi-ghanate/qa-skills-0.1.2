@@ -1,0 +1,63 @@
+module: complaints
+flow_id: CMP-02
+flow_name: complaint_type_list
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-02-H1
+    title: List the six complaint types when the Complaint Type arrow is clicked
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click the arrow icon of field_0_9988fc (contract gap: the list opens only from the arrow, not from the input)"
+      - "3. Wait for the options card (.digit-dropdown-options-card) to be visible"
+    assertions:
+      - complaint_type_option_count_is_6
+      - complaint_type_options_match_test_data
+    test_data_ref: CMP-02-H1
+    coverage_note: >
+      Checks the configured complaint types (MDMS RAINMAKER-PGR.ServiceDefs) reach the form, by their UI labels.
+
+  - id: CMP-02-H2
+    title: Keep the chosen complaint type in the field
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click the arrow icon of field_0_9988fc"
+      - "3. Click the option from test data CMP-02-H2 in the options card"
+    assertions:
+      - complaint_type_field_shows_selected_type
+      - complaint_type_options_card_closed
+    test_data_ref: CMP-02-H2
+    coverage_note: >
+      Selection outcome, which H1 (listing only) does not check; how the value is displayed is confirmed on first run.
+
+rbac_checks:
+  - id: CMP-02-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: MDMS search used for complaint types on /payments-ui/employee/pgr/create-complaint; run qa-kit api-scrape>"
+    expected_status: 401

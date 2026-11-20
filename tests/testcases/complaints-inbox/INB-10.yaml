@@ -1,0 +1,166 @@
+module: complaints-inbox
+flow_id: INB-10
+flow_name: take_action_menu_read_only
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-10. Read-only: pop-ups are opened and closed with Cancel; Submit is clicked
+# only in the E-cases, with the safety guard aborting any save. Actually assigning, rejecting or resolving a complaint is
+# INB-11, which waits for team approval and is not generated.
+# Everything here was captured live, read-only, on 2026-11-20 (the details page is not in the contract):
+#  - Take Action: getByRole('button', { name: 'Take Action' }); options .header-dropdown-option (Resolve, Assign, Reject)
+#  - pop-up: .digit-popup-wrapper.pgr-workflow-popup; Cancel / Submit by role and name inside it
+#  - Employee Comments: [name="SelectedComments"] (id ends -cs_common_employee_comments; the id embeds the complaint number)
+#  - Rejection Reason: [id$="-cs_reject_complaint"]; Assign to: the dropdown with placeholder "Select Employee"
+#  - Complaint File: #upload-complaintFile (not used: file upload is out of scope)
+# Use a QA-TEST complaint still in "Pending Assignment": the menu depends on the complaint's status.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /egov-hrms/employees/_search   # observed live 2026-11-20 (?tenantId=si&roles=...) when the Assign pop-up opens
+    service: egov-hrms
+  - method: POST
+    path: /pgr-services/v2/request/_update   # expected DIGIT save endpoint, NOT observed (Submit was never sent); the guard aborts it
+    service: pgr-services
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]   # the details page and its pop-ups are not in the contract
+
+cases:
+  - id: INB-10-H1
+    title: Offer Resolve, Assign and Reject in the Take Action menu of a pending complaint
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition, so no complaint can be changed"
+      - "The QA-TEST complaint in test data INB-10-H1 is in Pending Assignment"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-10-H1 as in steps 1-4 of INB-09-H1"
+      - "2. Click Take Action (contract gap)"
+    assertions:
+      - action_menu_options_match_test_data   # exactly Resolve, Assign, Reject
+    test_data_ref: INB-10-H1
+    coverage_note: >
+      The complaint workflow actions offered to the test account; USR-06-H2 / USR-13 check a different Take Action menu (users).
+
+  - id: INB-10-H2
+    title: Show the Assign complaint pop-up fields and close it with Cancel without saving
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition"
+      - "Privacy: the Assign to list holds real staff names; count the options, never log them"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-10-H2 as in steps 1-4 of INB-09-H1"
+      - "2. Click Take Action, then the Assign option"
+      - "3. Wait for the pop-up titled Assign complaint and for the POST /egov-hrms/employees/_search response; check that Assign to, Employee Comments and Complaint File are shown"
+      - "4. Open the Assign to dropdown, check that it has at least 1 option (names not logged) and close it"
+      - "5. Click Cancel in the pop-up"
+    assertions:
+      - popup_closed
+      - no_update_request_sent
+    test_data_ref: INB-10-H2
+    coverage_note: >
+      Assign pop-up content (title "Assign complaint", Assign to *, Employee Comments *, Complaint File; checked as steps) and that Cancel saves nothing.
+
+  - id: INB-10-H3
+    title: Show the Reject Complaint pop-up with its five reasons and close it with Cancel
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-10-H3 as in steps 1-4 of INB-09-H1"
+      - "2. Click Take Action, then the Reject option, and wait for the pop-up titled Reject Complaint"
+      - "3. Open the Rejection Reason dropdown, check that its options match the 5 reasons in test data INB-10-H3, then close it"
+      - "4. Check that Employee Comments and Complaint File are shown"
+      - "5. Click Cancel in the pop-up"
+    assertions:
+      - popup_closed
+      - no_update_request_sent
+    test_data_ref: INB-10-H3
+    coverage_note: >
+      Reject pop-up and its reason list (master data); different fields from Assign and Resolve.
+
+  - id: INB-10-H4
+    title: Show the Resolve Complaint pop-up and close it with Cancel without saving
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-10-H4 as in steps 1-4 of INB-09-H1"
+      - "2. Click Take Action, then the Resolve option, and wait for the pop-up titled Resolve Complaint"
+      - "3. Check that Employee Comments and Complaint File are shown and that there is no other required field"
+      - "4. Click Cancel in the pop-up"
+    assertions:
+      - popup_closed
+      - no_update_request_sent
+      - take_action_button_visible
+    test_data_ref: INB-10-H4
+    coverage_note: >
+      Resolve pop-up (comments and file only) and that the complaint stays actionable after Cancel.
+
+  - id: INB-10-E1
+    title: Block Resolve with an empty Employee Comments field
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition; if the app does send a save, it is aborted and recorded, so the complaint stays unchanged"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-10-E1 as in steps 1-4 of INB-09-H1"
+      - "2. Click Take Action, then the Resolve option, and wait for the pop-up"
+      - "3. Leave Employee Comments empty and click Submit (if Submit is disabled, do not click it)"
+    assertions:
+      - required_comment_message_or_submit_disabled   # 2026-11-20: neither (Submit enabled, click does nothing, no message): plan Finding 5
+      - no_update_request_sent   # an attempted save, aborted by the guard, is a finding
+    test_data_ref: INB-10-E1
+    coverage_note: >
+      Required-comment rule of the workflow pop-ups (the same field is in all three).
+
+  - id: INB-10-E2
+    title: Block Reject when no rejection reason is chosen
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, _update or _transition; an attempted save is aborted and recorded"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open the QA-TEST complaint from test data INB-10-E2 as in steps 1-4 of INB-09-H1"
+      - "2. Click Take Action, then the Reject option, and wait for the pop-up"
+      - "3. Fill Employee Comments with the QA-TEST comment from test data INB-10-E2 and leave Rejection Reason empty"
+      - "4. Click Submit (if Submit is disabled, do not click it)"
+    assertions:
+      - required_reason_message_or_submit_disabled   # 2026-11-20: neither (Submit enabled, click does nothing, no message): plan Finding 5
+      - no_update_request_sent
+    test_data_ref: INB-10-E2
+    coverage_note: >
+      Required-reason rule, specific to Reject; E1 covers the comment rule with every other field valid.

@@ -1,0 +1,909 @@
+{
+  "pages": [
+    {
+      "page_id": "home",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home",
+      "title": "HCM",
+      "text_excerpt": "html HCM DIGIT HCM",
+      "elements": [
+        {
+          "element_id": "animation_1dcbe0",
+          "role": "button",
+          "label": "animation",
+          "category": "navigation",
+          "target_path": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_user_login",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/login",
+      "title": "DIGIT HCM",
+      "text_excerpt": "html DIGIT HCM A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. < > SierraLeone Login Username * Password * Country/State/City * By clicking, I accept the Privacy Policy Continue Forgot  password?",
+      "elements": [
+        {
+          "element_id": "navigation_button_b3a210",
+          "role": "button",
+          "label": "<",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "navigation_button_9c123c",
+          "role": "button",
+          "label": ">",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "privacy_policy_84c438",
+          "role": "button",
+          "label": "Privacy Policy",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "continue_5f8c5f",
+          "role": "button",
+          "label": "Continue",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "username_30177a",
+          "role": "input",
+          "label": "username",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "password_53fc5f",
+          "role": "input",
+          "label": "password",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "introduction_3e3cf5",
+          "role": "button",
+          "label": "Introduction",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "definitions_c25202",
+          "role": "button",
+          "label": "Definitions",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "basis_for_data_collection_storage_proces_e3a592",
+          "role": "button",
+          "label": "Basis for Data Collection, Storage, Processing, Use, and Sharing",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "data_collection_3577ff",
+          "role": "button",
+          "label": "Data Collection",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "data_storage_697345",
+          "role": "button",
+          "label": "Data Storage",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "data_processing_use_5b1bd7",
+          "role": "button",
+          "label": "Data Processing & Use",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "data_sharing_82cd36",
+          "role": "button",
+          "label": "Data Sharing",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "data_retention_and_deletion_80fca7",
+          "role": "button",
+          "label": "Data Retention and Deletion",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "your_rights_with_respect_to_this_data_655bad",
+          "role": "button",
+          "label": "Your Rights with respect to this Data",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "privacy_policy_version_979f48",
+          "role": "button",
+          "label": "Privacy Policy Version",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "queries_and_grievances_106e3b",
+          "role": "button",
+          "label": "Queries and Grievances",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "annexure_details_of_data_collection_usag_6676b3",
+          "role": "button",
+          "label": "Annexure: Details of Data Collection, Usage, and Sharing",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "i_do_not_accept_774396",
+          "role": "button",
+          "label": "I Do Not Accept",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "i_accept_bb7508",
+          "role": "button",
+          "label": "I Accept",
+          "category": "action",
+          "target_path": null
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_payments_996dec",
+          "fields": [
+            {
+              "field_id": "username_5913e6",
+              "label": "username"
+            },
+            {
+              "field_id": "password_b89c3e",
+              "label": "password"
+            },
+            {
+              "field_id": "field_2_3eee41",
+              "label": "field_2"
+            },
+            {
+              "field_id": "field_3_b57319",
+              "label": "field_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "workbench_ui_employee_user_login",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/user/login",
+      "title": "HCM",
+      "text_excerpt": "html HCM DIGIT HCM A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. A digital partner for frontline workers Easy to use mobile app with user flows and analytics which implifies routine tasks with built-in checks for error reduction and provides one click on-call assistance. < > SierraLeone Login Username * Password * Country/State/City * By clicking, I accept the Privacy Policy Continue Forgot  password?",
+      "elements": [
+        {
+          "element_id": "navigation_button_b3a210",
+          "role": "button",
+          "label": "<",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "navigation_button_9c123c",
+          "role": "button",
+          "label": ">",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "visibility_0fd527",
+          "role": "button",
+          "label": "Visibility",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "select_an_option_be0437",
+          "role": "button",
+          "label": "Select an option",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "by_clicking_i_accept_the_410d00",
+          "role": "button",
+          "label": "By clicking, I accept the",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "forgot_password_54faff",
+          "role": "button",
+          "label": "Forgot password?",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "privacy_policy_29eb8b",
+          "role": "button",
+          "label": "Privacy Policy",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "continue_5f8c5f",
+          "role": "button",
+          "label": "Continue",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "username_30177a",
+          "role": "input",
+          "label": "username",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "password_53fc5f",
+          "role": "input",
+          "label": "password",
+          "category": "form_control",
+          "target_path": null
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_workbenc_996dec",
+          "fields": [
+            {
+              "field_id": "username_5a3c4c",
+              "label": "username"
+            },
+            {
+              "field_id": "password_181b4b",
+              "label": "password"
+            },
+            {
+              "field_id": "field_2_8b6e46",
+              "label": "field_2"
+            },
+            {
+              "field_id": "field_3_b57319",
+              "label": "field_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "workbench_ui_employee",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee",
+      "title": "HCM",
+      "text_excerpt": "html HCM DIGIT HCM SIERRALEONE CAMPAIGN SierraLeone English S Commodity Management Manage and View warehouse details for assigned campaigns Commodity Management Payment Manage Payments Setup Payment Attributes Settings Used for console settings Manage campaign Campaign settings Workbench Manage master data Localization MDMS How it works HCM Console Console is used to Manage Campaign Boundary management My campaigns Create campaign User management Manage users Search user Create user Complaints Manage Complaints Search complaint Create complaint Dashboard Used to view dashboard Dashboard",
+      "elements": [
+        {
+          "element_id": "sierraleone_c39b9d",
+          "role": "button",
+          "label": "SierraLeone",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "english_495985",
+          "role": "button",
+          "label": "English",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "s_24f482",
+          "role": "button",
+          "label": "S",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "commodity_management_2ffe55",
+          "role": "button",
+          "label": "Commodity Management",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "setup_payment_attributes_86ccb4",
+          "role": "button",
+          "label": "Setup Payment Attributes",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "manage_campaign_d9185d",
+          "role": "button",
+          "label": "Manage campaign",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "campaign_settings_ca1e28",
+          "role": "button",
+          "label": "Campaign settings",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "localization_a64437",
+          "role": "button",
+          "label": "Localization",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "mdms_25e21f",
+          "role": "button",
+          "label": "MDMS",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "how_it_works_efeb53",
+          "role": "button",
+          "label": "How it works",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "boundary_management_31fe45",
+          "role": "button",
+          "label": "Boundary management",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "my_campaigns_f6aa30",
+          "role": "button",
+          "label": "My campaigns",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "create_campaign_af3021",
+          "role": "button",
+          "label": "Create campaign",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "search_user_8a67fa",
+          "role": "button",
+          "label": "Search user",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "create_user_980434",
+          "role": "button",
+          "label": "Create user",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "search_complaint_c22151",
+          "role": "button",
+          "label": "Search complaint",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "create_complaint_17f516",
+          "role": "button",
+          "label": "Create complaint",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "dashboard_8806f1",
+          "role": "button",
+          "label": "Dashboard",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "sierraleone_c39b9d-2",
+          "role": "button",
+          "label": "SierraLeone",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "logout_8358e8",
+          "role": "button",
+          "label": "Logout",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "commodity_management_2ffe55-2",
+          "role": "button",
+          "label": "Commodity Management",
+          "category": "navigation",
+          "target_path": null
+        }
+      ],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_create_complaint",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+      "title": "DIGIT HCM",
+      "text_excerpt": "html DIGIT HCM SIERRALEONE CAMPAIGN SierraLeone English S Home / Create Complaint Complaint Details Complaint Type * Date of complaint * Boundary Details Country * Complainant Details Are you raising a complaint for yourself or another user? * Myself Another User Complainant Name * Complainant Contact Number * Supervisor's name Supervisor's contact number Additional Details Complaint description * Complaint File Choose file No File Uploaded Complaint Location Address line 1 Address line 2 Landmark Details Postal code Submit",
+      "elements": [
+        {
+          "element_id": "home_b6873d",
+          "role": "link",
+          "label": "Home",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "choose_file_4a8be7",
+          "role": "button",
+          "label": "Choose file",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "submit_b6846a",
+          "role": "button",
+          "label": "Submit",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "select_date_f857ea",
+          "role": "input",
+          "label": "Select date",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "complaintdate_8ac55d",
+          "role": "input",
+          "label": "ComplaintDate",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "complainantname_f24ee8",
+          "role": "input",
+          "label": "ComplainantName",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "complainantcontactnumber_33edae",
+          "role": "input",
+          "label": "ComplainantContactNumber",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "supervisorname_5a5518",
+          "role": "input",
+          "label": "SupervisorName",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "supervisorcontactnumber_0789ef",
+          "role": "input",
+          "label": "SupervisorContactNumber",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "file_eabcd3",
+          "role": "input",
+          "label": "file",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "addressone_f4f351",
+          "role": "input",
+          "label": "AddressOne",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "addresstwo_65ffc0",
+          "role": "input",
+          "label": "AddressTwo",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "landmark_931a6c",
+          "role": "input",
+          "label": "landmark",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "postalcode_32f79f",
+          "role": "input",
+          "label": "postalCode",
+          "category": "form_control",
+          "target_path": null
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_payments_7b2726",
+          "fields": [
+            {
+              "field_id": "field_0_9988fc",
+              "label": "field_0"
+            },
+            {
+              "field_id": "select_date_f857ea",
+              "label": "Select date"
+            },
+            {
+              "field_id": "complaintdate_8ac55d",
+              "label": "ComplaintDate"
+            },
+            {
+              "field_id": "field_3_f0ae98",
+              "label": "field_3"
+            },
+            {
+              "field_id": "field_4_cba6ab",
+              "label": "field_4"
+            },
+            {
+              "field_id": "field_5_cba6ab",
+              "label": "field_5"
+            },
+            {
+              "field_id": "complainantname_fc3612",
+              "label": "ComplainantName"
+            },
+            {
+              "field_id": "complainantcontactnumber_869a24",
+              "label": "ComplainantContactNumber"
+            },
+            {
+              "field_id": "supervisorname_abb008",
+              "label": "SupervisorName"
+            },
+            {
+              "field_id": "supervisorcontactnumber_fef562",
+              "label": "SupervisorContactNumber"
+            },
+            {
+              "field_id": "description_9237c5",
+              "label": "description"
+            },
+            {
+              "field_id": "file_34e35c",
+              "label": "file"
+            },
+            {
+              "field_id": "addressone_768768",
+              "label": "AddressOne"
+            },
+            {
+              "field_id": "addresstwo_aa6d1e",
+              "label": "AddressTwo"
+            },
+            {
+              "field_id": "landmark_b88ef6",
+              "label": "landmark"
+            },
+            {
+              "field_id": "postalcode_0b8576",
+              "label": "postalCode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_inbox_v2",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+      "title": "DIGIT HCM",
+      "text_excerpt": "html DIGIT HCM SIERRALEONE CAMPAIGN SierraLeone English S Home / PGR Inbox Search Complaints Complaints New Complaint Complaint Number Mobile Number Date Range Search Clear Search Filter Assigned to me Assigned to others Complaint Type Country Status Pending Assignment Apply Clear All Complaint Number Boundary Current Status Current owner Created Date PGR-2026-11-20-004556 Performance Issue North West Pending Assignment NA 20 November 26 PGR-2026-11-20-004553 Data Issue Baimbaya Pending Assignment NA 20 November 26 PGR-2026-11-20-004552 Other Sierra Leone Pending Assignment NA 20 November 26 PGR-2026-11-19-004547 Performance Issue Baimbaya Pending Assignment NA 19 November 26 PGR-2026-11-19-004546 Data Issue Baimbaya Pending Assignment NA 19 November 26 PGR-2026-11-19-004542 Technical Issue Baimbaya Pending Assignment NA 19 November 26 PGR-2026-11-19-004539 Technical Issue Baimbaya Pending Assignment NA 19 November 26 PGR-2026-11-19-004538 Performance Issue Baimbaya Pending Assignment NA 19 November 26 PGR-2026-11-19-004529 Technical Issue Baimbaya Pending Assignment NA 19 November 26 PGR-2026-11-19-004528 Other Sierra Leone Pending Assignment NA 19 November 26 Rows per page 10 20 30 40 50 1-10 of 18",
+      "elements": [
+        {
+          "element_id": "home_b6873d",
+          "role": "link",
+          "label": "Home",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "new_complaint_bc0fc8",
+          "role": "link",
+          "label": "New Complaint",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_20_004556_0cd688",
+          "role": "link",
+          "label": "PGR-2026-11-20-004556",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_20_004553_e19383",
+          "role": "link",
+          "label": "PGR-2026-11-20-004553",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_20_004552_ee564e",
+          "role": "link",
+          "label": "PGR-2026-11-20-004552",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004547_9dc3ae",
+          "role": "link",
+          "label": "PGR-2026-11-19-004547",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004546_09e854",
+          "role": "link",
+          "label": "PGR-2026-11-19-004546",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004542_71ad34",
+          "role": "link",
+          "label": "PGR-2026-11-19-004542",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004539_22eb5c",
+          "role": "link",
+          "label": "PGR-2026-11-19-004539",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004538_aec02a",
+          "role": "link",
+          "label": "PGR-2026-11-19-004538",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004529_2beb51",
+          "role": "link",
+          "label": "PGR-2026-11-19-004529",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "pgr_2026_11_19_004528_5526d8",
+          "role": "link",
+          "label": "PGR-2026-11-19-004528",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "apply_18d6c0",
+          "role": "button",
+          "label": "Apply",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "clear_all_d8e461",
+          "role": "button",
+          "label": "Clear All",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "next_page_4297e0",
+          "role": "button",
+          "label": "Next Page",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "last_page_9cd9d1",
+          "role": "button",
+          "label": "Last Page",
+          "category": "navigation",
+          "target_path": null
+        },
+        {
+          "element_id": "clear_search_c692f5",
+          "role": "button",
+          "label": "Clear Search",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "first_page_b08b28",
+          "role": "button",
+          "label": "First Page",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "previous_page_131236",
+          "role": "button",
+          "label": "Previous Page",
+          "category": "action",
+          "target_path": null
+        },
+        {
+          "element_id": "complaintnumber_7836f5",
+          "role": "input",
+          "label": "complaintNumber",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "mobilenumber_c51cd9",
+          "role": "input",
+          "label": "mobileNumber",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "rows_per_page_70af54",
+          "role": "combobox",
+          "label": "Rows per page",
+          "category": "form_control",
+          "target_path": null
+        },
+        {
+          "element_id": "clear_all_d8e461-2",
+          "role": "button",
+          "label": "Clear All",
+          "category": "revealed_inline",
+          "target_path": null
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_payments_3ca9a1",
+          "fields": [
+            {
+              "field_id": "complaintnumber_7836f5",
+              "label": "complaintNumber"
+            },
+            {
+              "field_id": "mobilenumber_c51cd9",
+              "label": "mobileNumber"
+            },
+            {
+              "field_id": "field_2_2ab45f",
+              "label": "field_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "workbench_ui_employee_campaign_commodity_campaig",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+      "title": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+      "text_excerpt": "html HCM DIGIT HCM TENANT_TENANTS_SI CAMPAIGN TENANT_TENANTS_SI English S Home / Campaigns My Campaigns Ongoing Upcoming Completed Campaign name Search Clear Sort Bednet_nov_swathi_test ITN Distribution Start date 08 November 2026 End date 28 February 2027 Duration 113 Days Status Ongoing View Dashboard Rows Per Page: 5 10 15 20 1-1 of 1",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_2",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_3",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_4",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_5",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_6",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_7",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_8",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_9",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_10",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "text_excerpt": "",
+      "elements": [],
+      "forms": []
+    }
+  ]
+}

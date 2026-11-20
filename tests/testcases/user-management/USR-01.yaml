@@ -1,0 +1,46 @@
+module: user-management
+flow_id: USR-01
+flow_name: open_search_user_from_home
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee, payments_ui_employee_hrms_inbox, home]
+
+cases:
+  - id: USR-01-H1
+    title: Open Search user from the User management card on the workbench home
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "DIGIT sessionStorage rebuilt from the saved session (restoreSavedSession), needed by the workbench home"
+      - "Safety guard: the test aborts any request whose URL ends in _create or _update, so no user is created or changed"
+      - "Browser is on the origin + /workbench-ui/employee"
+    steps:
+      - "1. Open /workbench-ui/employee and wait for animation_1dcbe0 to be hidden"
+      - "2. Wait for search_user_8a67fa to be visible"
+      - "3. Click search_user_8a67fa"
+      - "4. Wait for the URL pathname to be /payments-ui/employee/hrms/inbox and for animation_1dcbe0 to be hidden"
+      - "5. Choose ADMIN_KAMBIA in the Hierarchy type dropdown and click Next (contract gap: hierarchy step captured live)"
+    assertions:
+      - url_pathname_is_payments_ui_employee_hrms_inbox
+      - search_fields_visible   # Employee Name (names), Username (codes), Mobile Number (phone)
+      - results_table_headers_shown   # Username | Name | No of Roles | Jurisdiction | Designation | Department
+    test_data_ref: USR-01-H1
+    coverage_note: >
+      The real user path into Search user (home card, payments-ui app switch, hierarchy step); nothing else covers the entry.
+
+rbac_checks:
+  - id: USR-01-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /egov-hrms/employees/_search (observed live 2026-11-16 on /payments-ui/employee/hrms/inbox; no API contract yet)"
+    expected_status: 401

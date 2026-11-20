@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["tests/e2e/**/*.ts", "tests/pages/**/*.ts", "tests/helpers/**/*.ts", "tests/fixtures/**/*.ts", "tests/api/**/*.ts", "tests/integration/**/*.ts","playwright.config.ts", "global-setup.ts"]
+}

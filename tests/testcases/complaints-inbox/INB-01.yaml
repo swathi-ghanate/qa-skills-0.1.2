@@ -1,0 +1,72 @@
+module: complaints-inbox
+flow_id: INB-01
+flow_name: open_inbox_from_workbench_home
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+# Source: tests/testplan/complaints-inbox.md#inb-01. Elements marked "contract gap" were captured live (read-only) on 2026-11-20.
+# AUTH-07-H2 already opens the inbox by URL to prove the login session carries over; these cases add the
+# entry from the home card (H1) and the full page layout plus the default search request (H2).
+# Logged-out API check for the inbox search: INB-13-RBAC-1 (one check per endpoint, overlap-check 2026-11-20).
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20 (read-only capture); not in contract/api-contract.json (api-scrape could not log in)
+    service: inbox
+
+ui_pages: [workbench_ui_employee, payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-01-H1
+    title: Open the complaints inbox from the Search complaint button on the workbench home
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "DIGIT sessionStorage rebuilt by restoreSavedSession() (tests/helpers/app.ts), needed by the workbench home"
+      - "Browser is on the origin + /workbench-ui/employee"
+    steps:
+      - "1. Open /workbench-ui/employee and wait for animation_1dcbe0 to be hidden"
+      - "2. Wait for search_complaint_c22151 (Complaints card) to be visible"
+      - "3. Click search_complaint_c22151"
+      - "4. Wait for the URL pathname to be /payments-ui/employee/pgr/inbox-v2 and for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_inbox_v2   # target recorded on the payments-ui home card (search_complaint_bb5939-2); confirm for the workbench card on the first run
+      - complaint_number_field_visible
+    test_data_ref: INB-01-H1
+    coverage_note: >
+      The only case that reaches the inbox through the workbench home card; AUTH-07-H2 opens it by URL and CMP-01-H1 uses the other button (Create complaint) on the same card.
+
+  - id: INB-01-H2
+    title: Show the search card, filter panel, results table and default search request when the inbox opens
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Privacy: other people's complaint rows are counted, never read or logged"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2 and wait for animation_1dcbe0 to be hidden"
+      - "2. Wait for the first POST /inbox/v2/_search response and for the first results column header (contract gap: results table) to be visible, up to 90 s"
+      - "3. Read the search card: complaintnumber_7836f5, mobilenumber_c51cd9, field_2_2ab45f (Date Range; contract selector matches 0, use input.digit-employee-select-wrap--elipses[readonly]) and the Search and Clear Search buttons (Search is a contract gap)"
+      - "4. Read the Filter card: the Assigned to me / Assigned to others radios, Complaint Type, Country, the Pending Assignment checkbox (contract gaps) and apply_18d6c0, clear_all_d8e461"
+    assertions:
+      - default_search_request_params   # moduleSearchCriteria {}, limit 10, offset 0, processSearchCriteria businessService ["PGR"] / moduleName RAINMAKER-PGR / tenantId si
+      - search_card_fields_visible
+      - filter_card_controls_visible
+      - results_column_headers_match_test_data   # Complaint Number | Boundary | Current Status | Current owner | Created Date
+      - result_rows_between_1_and_10
+      - page_count_text_shown   # "1-10 of N"
+    test_data_ref: INB-01-H2
+    coverage_note: >
+      Checks the whole inbox layout and the default search request, which AUTH-07-H2 (Complaint Number field only) does not.

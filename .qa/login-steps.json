@@ -1,0 +1,12 @@
+{
+  "steps": [
+    {"action": "fill", "selector": "#user-login-standalone-core_login_username-field", "credential_key": "QA_USERNAME"},
+    {"action": "fill", "selector": "#user-login-standalone-core_login_password-field", "credential_key": "QA_PASSWORD"},
+    {"action": "click", "selector": "div.digit-dropdown-select[aria-label=\"Select an option\"]"},
+    {"wait_ms": 1000},
+    {"action": "click", "selector": "#jk-dropdown-unique .digit-dropdown-item"},
+    {"action": "click", "selector": ".digit-privacy-checkbox .digit-checkbox-container"},
+    {"action": "click", "selector": "#formcomposer-submit-action"},
+    {"wait_ms": 5000}
+  ]
+}

@@ -1,0 +1,59 @@
+module: complaints-inbox
+flow_id: INB-12
+flow_name: inbox_links
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-12. INB-11 (really assign / reject / resolve) is not generated: it waits for
+# team approval. H2 uses the same landing assertion as CMP-10-H1 (url starts with /payments-ui/employee; the final page may
+# redirect), per overlap-check 2026-11-20. Logged-out API check for the inbox search: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2, payments_ui_employee_pgr_create_complaint, payments_ui_employee]
+
+cases:
+  - id: INB-12-H1
+    title: Open Create complaint from the inbox's New Complaint link
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any request whose URL ends in _create, so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2 and wait for animation_1dcbe0 to be hidden"
+      - "2. Click new_complaint_bc0fc8"
+      - "3. Wait for the URL pathname to be /payments-ui/employee/pgr/create-complaint and for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_create_complaint
+      - complaint_date_field_visible   # complaintdate_8ac55d
+    test_data_ref: INB-12-H1
+    coverage_note: >
+      A new way into Create complaint (from the inbox); CMP-01-H1 and AUTH-07-H1 reach it from the home card and by URL. The form is never filled.
+
+  - id: INB-12-H2
+    title: Leave the inbox through the breadcrumb Home link
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2 and wait for animation_1dcbe0 to be hidden"
+      - "2. Click home_b6873d (breadcrumb Home)"
+      - "3. Wait for the URL pathname to change away from /payments-ui/employee/pgr/inbox-v2"
+    assertions:
+      - url_pathname_starts_with_payments_ui_employee   # final landing page TBD (may redirect), as in CMP-10-H1
+      - complaint_number_field_not_present
+    test_data_ref: INB-12-H2
+    coverage_note: >
+      Same link (home_b6873d) as CMP-10-H1 but from the inbox instead of Create complaint, so the starting state differs.

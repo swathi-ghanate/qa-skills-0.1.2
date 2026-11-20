@@ -1,0 +1,87 @@
+module: complaints
+flow_id: CMP-08
+flow_name: submit_complete_complaint
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+# Creates REAL complaints on the live Sierra Leone environment: approved by the team on 2026-11-16 (any complaint type; closing is handled later).
+# Uses "Another User": the test account's own name and number (filled in by "Myself") fail the form's checks.
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /pgr-services/v2/request/_create   # observed live 2026-11-16 (request blocked during the capture)
+    service: pgr-services
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-08-H1
+    title: Submit a complaint for another user with only the mandatory fields and get a complaint number
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "SIDE EFFECT: creates one real complaint per run (approved 2026-11-16); the description starts with QA-TEST"
+      - "QA_COMPLAINANT_MOBILE (9 to 11 digits, the complaint form's rule since 2026-11-20; a number the team owns) is set in .env"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Choose the complaint type from test data CMP-08-H1 (arrow icon of field_0_9988fc)"
+      - "3. Fill complaintdate_8ac55d with today's date (computed at run time)"
+      - "4. Choose the Country from test data CMP-08-H1 (Country only; lower levels are optional)"
+      - "5. Click field_5_cba6ab (Another User)"
+      - "6. Fill complainantname_fc3612 with the name from test data CMP-08-H1"
+      - "7. Fill complainantcontactnumber_869a24 with QA_COMPLAINANT_MOBILE from .env"
+      - "8. Fill description_9237c5 with the QA-TEST description from test data CMP-08-H1"
+      - "9. Check that the complaint type, date, Country, name, number and description still hold their values"
+      - "10. Click submit_b6846a and wait for the POST /pgr-services/v2/request/_create response"
+    assertions:
+      - create_request_returns_200   # status to confirm on the first run
+      - complaint_number_shown   # success screen not observed yet; capture text and path on the first run
+    test_data_ref: CMP-08-H1
+    coverage_note: >
+      The core create with the smallest valid complaint (only mandatory fields, Country only), proving Country alone is enough.
+
+  - id: CMP-08-H2
+    title: Submit a complaint for another user with the full boundary path and get a complaint number
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "SIDE EFFECT: creates one real complaint per run (approved 2026-11-16); the description starts with QA-TEST"
+      - "QA_COMPLAINANT_MOBILE (9 to 11 digits, the complaint form's rule since 2026-11-20; a number the team owns) is set in .env"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Choose the complaint type from test data CMP-08-H2 (arrow icon of field_0_9988fc)"
+      - "3. Fill complaintdate_8ac55d with today's date (computed at run time)"
+      - "4. Choose every boundary level from test data CMP-08-H2, from Country down to Community"
+      - "5. Click field_5_cba6ab (Another User)"
+      - "6. Fill complainantname_fc3612 with the name from test data CMP-08-H2"
+      - "7. Fill complainantcontactnumber_869a24 with QA_COMPLAINANT_MOBILE from .env"
+      - "8. Fill description_9237c5 with the QA-TEST description from test data CMP-08-H2"
+      - "9. Check that every chosen value is still in its field"
+      - "10. Click submit_b6846a and wait for the POST /pgr-services/v2/request/_create response"
+    assertions:
+      - create_request_returns_200
+      - complaint_number_shown
+    test_data_ref: CMP-08-H2
+    coverage_note: >
+      The deepest location (all 7 levels) and a different complaint type, so a failure tied to a full boundary or another type is caught; H1 uses Country only.
+
+rbac_checks:
+  - id: CMP-08-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /pgr-services/v2/request/_create (observed live 2026-11-16; send an invalid payload only, so an auth bug cannot create a complaint)"
+    expected_status: 401

@@ -1,0 +1,75 @@
+module: login
+flow_id: AUTH-01
+flow_name: workbench_login_valid_credentials
+priority: P0
+type: [e2e]
+tags: [smoke, regression]
+
+actors:
+  - unauthenticated   # starts with no session and logs in with the .env test account (QA_USERNAME / QA_PASSWORD)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee_user_login, home, workbench_ui_employee]
+
+cases:
+  - id: AUTH-01-H1
+    title: Log in through the workbench login after being redirected from /workbench-ui/employee
+    type: happy_path
+    test_type: [e2e]
+    priority: P0
+    tags: [smoke, regression]
+    preconditions:
+      - "Fresh browser context with no stored session (storageState empty); do not use .auth/storage-state.json"
+      - "QA_USERNAME and QA_PASSWORD are set in the project .env"
+      - "Browser is on the origin + /workbench-ui/employee"
+    steps:
+      - "1. Open /workbench-ui/employee and wait for the URL to become /workbench-ui/employee/user/login"
+      - "2. Wait for animation_1dcbe0 (loader) to be hidden"
+      - "3. Fill username_30177a with QA_USERNAME from .env"
+      - "4. Fill password_53fc5f with QA_PASSWORD from .env"
+      - "5. Click select_an_option_be0437, then choose the option 'Sierra Leone' (option selector not in contract; observed as '#jk-dropdown-unique .digit-dropdown-item')"
+      - "6. Click by_clicking_i_accept_the_410d00 to tick the privacy consent checkbox field_3_b57319"
+      - "7. Click continue_5f8c5f"
+      - "8. Wait for the URL to become /workbench-ui/employee and for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_workbench_ui_employee
+      - commodity_management_card_visible
+      - login_form_not_visible
+    test_data_ref: AUTH-01-H1
+    coverage_note: >
+      Core login through the workbench entry URL the team uses, including the redirect from /workbench-ui/employee to the login page.
+
+  - id: AUTH-01-H2
+    title: Log in when opening the workbench login page directly
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session (storageState empty)"
+      - "QA_USERNAME and QA_PASSWORD are set in the project .env"
+      - "Browser is on the origin + /workbench-ui/employee/user/login"
+    steps:
+      - "1. Open /workbench-ui/employee/user/login"
+      - "2. Wait for animation_1dcbe0 (loader) to be hidden"
+      - "3. Fill username_30177a with QA_USERNAME from .env"
+      - "4. Fill password_53fc5f with QA_PASSWORD from .env"
+      - "5. Click select_an_option_be0437, then choose the option 'Sierra Leone'"
+      - "6. Verify field_2_8b6e46 shows 'Sierra Leone'"
+      - "7. Click by_clicking_i_accept_the_410d00 to tick field_3_b57319"
+      - "8. Click continue_5f8c5f"
+      - "9. Wait for the URL to become /workbench-ui/employee"
+    assertions:
+      - url_pathname_is_workbench_ui_employee
+      - commodity_management_card_visible
+    test_data_ref: AUTH-01-H2
+    coverage_note: >
+      Same login started from the direct login URL (the QA_LOGIN_URL used by global-setup) rather than via the redirect, and checks the city value is set.
+
+rbac_checks:
+  - id: AUTH-01-RBAC-1
+    actor: unauthenticated
+    endpoint: "GET <TBD: protected API called by /workbench-ui/employee; no API contract yet, run qa-kit api-scrape>"
+    expected_status: 401

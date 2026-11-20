@@ -1,0 +1,59 @@
+module: login
+flow_id: AUTH-07
+flow_name: workbench_session_opens_complaint_pages
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: AUTH-07-H1
+    title: Open Create complaint with the workbench login session and no second login
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint"
+      - "2. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_create_complaint
+      - submit_button_visible
+    test_data_ref: AUTH-07-H1
+    coverage_note: >
+      Proves the workbench login session works in the payments-ui app for an in-scope page, without using the payments-ui login. Read-only.
+
+  - id: AUTH-07-H2
+    title: Open the complaints inbox with the workbench login session and no second login
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2"
+      - "2. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_inbox_v2
+      - complaint_number_field_visible
+    test_data_ref: AUTH-07-H2
+    coverage_note: >
+      Second in-scope complaint page; a different page component from H1, so a session problem specific to the inbox is caught.
+
+rbac_checks:
+  - id: AUTH-07-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST <TBD: complaint search API called by /payments-ui/employee/pgr/inbox-v2; run qa-kit api-scrape>"
+    expected_status: 401

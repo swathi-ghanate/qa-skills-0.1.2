@@ -1,0 +1,4740 @@
+{
+  "contract_version": "1.3.0",
+  "application": {
+    "name": "HCM",
+    "base_url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home"
+  },
+  "extraction_metadata": {
+    "tool": "qa-kit",
+    "scraped_at": "2026-11-20T07:38:25.255852+00:00",
+    "total_pages": 18,
+    "wait_until": "load",
+    "deterministic_frontier": true
+  },
+  "route_index": [
+    {
+      "page_id": "home",
+      "path": "/",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home",
+      "title": "HCM",
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": false,
+      "status": "observed"
+    },
+    {
+      "page_id": "payments_ui_employee_user_login",
+      "path": "/payments-ui/employee/user/login",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/login",
+      "title": "DIGIT HCM",
+      "page_type": "login",
+      "test_priority": "medium",
+      "is_protected": false,
+      "status": "observed"
+    },
+    {
+      "page_id": "workbench_ui_employee_user_login",
+      "path": "/workbench-ui/employee/user/login",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/user/login",
+      "title": "HCM",
+      "page_type": "login",
+      "test_priority": "medium",
+      "is_protected": false,
+      "status": "partially_observed"
+    },
+    {
+      "page_id": "workbench_ui_employee",
+      "path": "/workbench-ui/employee",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee",
+      "title": "HCM",
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": true,
+      "status": "partially_observed"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_create_complaint",
+      "path": "/payments-ui/employee/pgr/create-complaint",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+      "title": "DIGIT HCM",
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": true,
+      "status": "observed"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_inbox_v2",
+      "path": "/payments-ui/employee/pgr/inbox-v2",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+      "title": "DIGIT HCM",
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": true,
+      "status": "observed"
+    },
+    {
+      "page_id": "workbench_ui_employee_campaign_commodity_campaig",
+      "path": "/workbench-ui/employee/campaign/commodity-campaigns",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+      "title": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee",
+      "path": "/payments-ui/employee",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_2",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_3",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_4",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_5",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_6",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_7",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_8",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_9",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_10",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored"
+    },
+    {
+      "page_id": "digit_ui_employee",
+      "path": "/digit-ui/employee",
+      "url": "https://sierraleone-hcm.digit.org/digit-ui/employee",
+      "title": "https://sierraleone-hcm.digit.org/digit-ui/employee",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored",
+      "stale": true
+    },
+    {
+      "page_id": "payments_ui_employee_hrms_create",
+      "path": "/payments-ui/employee/hrms/create",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/create",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/create",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored",
+      "stale": true
+    },
+    {
+      "page_id": "payments_ui_employee_hrms_inbox",
+      "path": "/payments-ui/employee/hrms/inbox",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/inbox",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/inbox",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored",
+      "stale": true
+    },
+    {
+      "page_id": "payments_ui_employee_user_error",
+      "path": "/payments-ui/employee/user/error",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/error",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/error",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored",
+      "stale": true
+    },
+    {
+      "page_id": "workbench_ui_employee_campaign_my_campaign_new",
+      "path": "/workbench-ui/employee/campaign/my-campaign-new",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/my-campaign-new",
+      "title": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/my-campaign-new",
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "status": "unexplored",
+      "stale": true
+    }
+  ],
+  "home_navigation": [],
+  "pages": [
+    {
+      "page_id": "home",
+      "path": "/",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home",
+      "title": "HCM",
+      "description": "",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": false,
+      "depth": 1,
+      "auth_context": "anonymous",
+      "scrape_status": "ok",
+      "ready_state": "stable",
+      "status": "observed",
+      "unexplored_interactions": [],
+      "elements": [
+        {
+          "element_id": "animation_1dcbe0",
+          "role": "button",
+          "tag": "div",
+          "label": "animation",
+          "description": "Button that triggers the 'animation' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'animation', exact: true })",
+            "xpath": "//div[@aria-label='animation']",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        }
+      ],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_user_login",
+      "path": "/payments-ui/employee/user/login",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/login",
+      "title": "DIGIT HCM",
+      "description": "",
+      "description_pending": true,
+      "page_type": "login",
+      "test_priority": "medium",
+      "is_protected": false,
+      "depth": 3,
+      "auth_context": "anonymous",
+      "scrape_status": "ok",
+      "ready_state": "stable",
+      "status": "observed",
+      "unexplored_interactions": [],
+      "elements": [
+        {
+          "element_id": "navigation_button_b3a210",
+          "role": "button",
+          "tag": "button",
+          "label": "<",
+          "description": "Button that triggers the '<' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: '<', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[1]/div[5]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "navigation_button_9c123c",
+          "role": "button",
+          "tag": "button",
+          "label": ">",
+          "description": "Button that triggers the '>' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: '>', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[1]/div[5]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "privacy_policy_84c438",
+          "role": "button",
+          "tag": "button",
+          "label": "Privacy Policy",
+          "description": "Button that triggers the 'Privacy Policy' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Privacy Policy', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "continue_5f8c5f",
+          "role": "button",
+          "tag": "button",
+          "label": "Continue",
+          "description": "Button that triggers the 'Continue' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Continue', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "username_30177a",
+          "role": "input",
+          "tag": "input",
+          "label": "username",
+          "description": "Input field for entering username.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "username",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"username\"]')",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[3]/div/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "password_53fc5f",
+          "role": "input",
+          "tag": "input",
+          "label": "password",
+          "description": "Input field for entering password.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "password",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"password\"]')",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[4]/div/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "introduction_3e3cf5",
+          "role": "button",
+          "tag": "button",
+          "label": "Introduction",
+          "description": "Button that triggers the 'Introduction' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Introduction', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[1]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "definitions_c25202",
+          "role": "button",
+          "tag": "button",
+          "label": "Definitions",
+          "description": "Button that triggers the 'Definitions' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Definitions', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[2]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "basis_for_data_collection_storage_proces_e3a592",
+          "role": "button",
+          "tag": "button",
+          "label": "Basis for Data Collection, Storage, Processing, Use, and Sharing",
+          "description": "Button that triggers the 'Basis for Data Collection, Storage, Processing, Use, and Sharing' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Basis for Data Collection, Storage, Processing, Use, and Sharing', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[3]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "data_collection_3577ff",
+          "role": "button",
+          "tag": "button",
+          "label": "Data Collection",
+          "description": "Button that triggers the 'Data Collection' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Data Collection', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[4]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "data_storage_697345",
+          "role": "button",
+          "tag": "button",
+          "label": "Data Storage",
+          "description": "Button that triggers the 'Data Storage' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Data Storage', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[5]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "data_processing_use_5b1bd7",
+          "role": "button",
+          "tag": "button",
+          "label": "Data Processing & Use",
+          "description": "Button that triggers the 'Data Processing & Use' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Data Processing & Use', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[6]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "data_sharing_82cd36",
+          "role": "button",
+          "tag": "button",
+          "label": "Data Sharing",
+          "description": "Button that triggers the 'Data Sharing' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Data Sharing', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[7]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "data_retention_and_deletion_80fca7",
+          "role": "button",
+          "tag": "button",
+          "label": "Data Retention and Deletion",
+          "description": "Button that triggers the 'Data Retention and Deletion' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Data Retention and Deletion', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[8]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "your_rights_with_respect_to_this_data_655bad",
+          "role": "button",
+          "tag": "button",
+          "label": "Your Rights with respect to this Data",
+          "description": "Button that triggers the 'Your Rights with respect to this Data' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Your Rights with respect to this Data', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[9]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "privacy_policy_version_979f48",
+          "role": "button",
+          "tag": "button",
+          "label": "Privacy Policy Version",
+          "description": "Button that triggers the 'Privacy Policy Version' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Privacy Policy Version', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[10]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "queries_and_grievances_106e3b",
+          "role": "button",
+          "tag": "button",
+          "label": "Queries and Grievances",
+          "description": "Button that triggers the 'Queries and Grievances' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Queries and Grievances', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[11]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "annexure_details_of_data_collection_usag_6676b3",
+          "role": "button",
+          "tag": "button",
+          "label": "Annexure: Details of Data Collection, Usage, and Sharing",
+          "description": "Button that triggers the 'Annexure: Details of Data Collection, Usage, and Sharing' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Annexure: Details of Data Collection, Usage, and Sharing', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[2]/div[1]/ul/li[12]/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "i_do_not_accept_774396",
+          "role": "button",
+          "tag": "button",
+          "label": "I Do Not Accept",
+          "description": "Button that triggers the 'I Do Not Accept' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'I Do Not Accept', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[3]/div/button[1]",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "i_accept_bb7508",
+          "role": "button",
+          "tag": "button",
+          "label": "I Accept",
+          "description": "Button that triggers the 'I Accept' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'I Accept', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div[2]/div/div[3]/div/button[2]",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_payments_996dec",
+          "description": "Form used to collect and submit https sierraleone hcm digit org payments 996dec data.",
+          "action": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/login",
+          "method": "GET",
+          "status": "observed",
+          "selectors": {
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form"
+          },
+          "fields": [
+            {
+              "field_id": "username_5913e6",
+              "name": "username",
+              "type": "text",
+              "label": "username",
+              "description": "Input field for entering username.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#user-login-core_login_username')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[3]/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "password_b89c3e",
+              "name": "password",
+              "type": "password",
+              "label": "password",
+              "description": "Input field for entering password.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#user-login-core_login_password')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[4]/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "field_2_3eee41",
+              "name": "",
+              "type": "text",
+              "label": "field_2",
+              "description": "Input field for entering field_2.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#user-login-core_common_city')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[5]/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "field_3_b57319",
+              "name": "",
+              "type": "checkbox",
+              "label": "field_3",
+              "description": "Input field for entering field_3.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#privacy-component-check')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[6]/div/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "workbench_ui_employee_user_login",
+      "path": "/workbench-ui/employee/user/login",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/user/login",
+      "title": "HCM",
+      "description": "",
+      "description_pending": true,
+      "page_type": "login",
+      "test_priority": "medium",
+      "is_protected": false,
+      "depth": 5,
+      "auth_context": "anonymous",
+      "scrape_status": "ok",
+      "ready_state": "stable",
+      "status": "partially_observed",
+      "unexplored_interactions": [
+        {
+          "label": ">",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Visibility",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Select an option",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "By clicking, I accept the",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Privacy Policy",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Forgot password?",
+          "reason": "max_expanders_budget_reached"
+        }
+      ],
+      "elements": [
+        {
+          "element_id": "navigation_button_b3a210",
+          "role": "button",
+          "tag": "button",
+          "label": "<",
+          "description": "Button that triggers the '<' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: '<', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[1]/div[8]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "navigation_button_9c123c",
+          "role": "button",
+          "tag": "button",
+          "label": ">",
+          "description": "Button that triggers the '>' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: '>', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[1]/div[8]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "visibility_0fd527",
+          "role": "button",
+          "tag": "span",
+          "label": "Visibility",
+          "description": "Button that triggers the 'Visibility' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Visibility', exact: true })",
+            "xpath": "//span[@aria-label='Visibility']",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "select_an_option_be0437",
+          "role": "button",
+          "tag": "div",
+          "label": "Select an option",
+          "description": "Button that triggers the 'Select an option' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Select an option', exact: true })",
+            "xpath": "//div[@aria-label='Select an option']",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "by_clicking_i_accept_the_410d00",
+          "role": "button",
+          "tag": "label",
+          "label": "By clicking, I accept the",
+          "description": "Button that triggers the 'By clicking, I accept the' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'By clicking, I accept the', exact: true })",
+            "xpath": "//label[contains(text(),'By clicking, I accept the')]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "forgot_password_54faff",
+          "role": "button",
+          "tag": "div",
+          "label": "Forgot password?",
+          "description": "Button that triggers the 'Forgot password?' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Forgot password?', exact: true })",
+            "xpath": "//div[contains(text(),'Forgot password?')]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "privacy_policy_29eb8b",
+          "role": "button",
+          "tag": "button",
+          "label": "Privacy Policy",
+          "description": "Button that triggers the 'Privacy Policy' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": " Privacy Policy",
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: ' Privacy Policy', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[5]/div/div/div/div/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "continue_5f8c5f",
+          "role": "button",
+          "tag": "button",
+          "label": "Continue",
+          "description": "Button that triggers the 'Continue' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Continue', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/span/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "username_30177a",
+          "role": "input",
+          "tag": "input",
+          "label": "username",
+          "description": "Input field for entering username.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "username",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"username\"]')",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[2]/div/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "password_53fc5f",
+          "role": "input",
+          "tag": "input",
+          "label": "password",
+          "description": "Input field for entering password.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "password",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"password\"]')",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[3]/div/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "animation_1dcbe0",
+          "role": "button",
+          "tag": "div",
+          "label": "animation",
+          "description": "Button that triggers the 'animation' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'animation', exact: true })",
+            "xpath": "//div[@aria-label='animation']",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "by_clicking_i_accept_the_00d8a8",
+          "role": "input",
+          "tag": "input",
+          "label": "By clicking, I accept the",
+          "description": "Input field for entering By clicking, I accept the.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('textbox', { name: 'By clicking, I accept the', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[5]/div/div/div/div/div/div/input",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_workbenc_996dec",
+          "description": "Form used to collect and submit https sierraleone hcm digit org workbenc 996dec data.",
+          "action": "https://sierraleone-hcm.digit.org/workbench-ui/employee/user/login",
+          "method": "GET",
+          "status": "observed",
+          "selectors": {
+            "xpath": "/html/body/div/div/div/div/div/div/div[2]/form"
+          },
+          "fields": [
+            {
+              "field_id": "username_5a3c4c",
+              "name": "username",
+              "type": "text",
+              "label": "username",
+              "description": "Input field for entering username.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#user-login-standalone-core_login_username-field')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[2]/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "password_181b4b",
+              "name": "password",
+              "type": "password",
+              "label": "password",
+              "description": "Input field for entering password.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#user-login-standalone-core_login_password-field')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[3]/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "field_2_8b6e46",
+              "name": "",
+              "type": "text",
+              "label": "field_2",
+              "description": "Input field for entering field_2.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#user-login-standalone-core_common_city-field')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[4]/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "field_3_b57319",
+              "name": "",
+              "type": "checkbox",
+              "label": "field_3",
+              "description": "Input field for entering field_3.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#privacy-component-check')",
+                "xpath": "/html/body/div/div/div/div/div/div/div[2]/form/div/div[5]/div/div/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "workbench_ui_employee",
+      "path": "/workbench-ui/employee",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee",
+      "title": "HCM",
+      "description": "",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": true,
+      "depth": 6,
+      "auth_context": "authenticated",
+      "scrape_status": "ok",
+      "ready_state": "stable",
+      "status": "partially_observed",
+      "unexplored_interactions": [
+        {
+          "label": "How it works",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Boundary management",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "My campaigns",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Create campaign",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Search user",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Create user",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Search complaint",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Create complaint",
+          "reason": "max_expanders_budget_reached"
+        },
+        {
+          "label": "Dashboard",
+          "reason": "max_expanders_budget_reached"
+        }
+      ],
+      "elements": [
+        {
+          "element_id": "sierraleone_c39b9d",
+          "role": "button",
+          "tag": "div",
+          "label": "SierraLeone",
+          "description": "Button that triggers the 'SierraLeone' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'SierraLeone', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[1]/div/div/div[2]/div/div/div",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "english_495985",
+          "role": "button",
+          "tag": "div",
+          "label": "English",
+          "description": "Button that triggers the 'English' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'English', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[2]/div/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "s_24f482",
+          "role": "button",
+          "tag": "div",
+          "label": "S",
+          "description": "Button that triggers the 'S' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'S', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[3]/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "commodity_management_2ffe55",
+          "role": "button",
+          "tag": "button",
+          "label": "Commodity Management",
+          "description": "Button that triggers the 'Commodity Management' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Commodity Management', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[1]/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "setup_payment_attributes_86ccb4",
+          "role": "button",
+          "tag": "button",
+          "label": "Setup Payment Attributes",
+          "description": "Button that triggers the 'Setup Payment Attributes' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Setup Payment Attributes', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "manage_campaign_d9185d",
+          "role": "button",
+          "tag": "button",
+          "label": "Manage campaign",
+          "description": "Button that triggers the 'Manage campaign' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Manage campaign', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "campaign_settings_ca1e28",
+          "role": "button",
+          "tag": "button",
+          "label": "Campaign settings",
+          "description": "Button that triggers the 'Campaign settings' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Campaign settings', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "localization_a64437",
+          "role": "button",
+          "tag": "button",
+          "label": "Localization",
+          "description": "Button that triggers the 'Localization' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Localization', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[4]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "mdms_25e21f",
+          "role": "button",
+          "tag": "button",
+          "label": "MDMS",
+          "description": "Button that triggers the 'MDMS' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'MDMS', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[4]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "how_it_works_efeb53",
+          "role": "button",
+          "tag": "button",
+          "label": "How it works",
+          "description": "Button that triggers the 'How it works' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'How it works', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[4]/button[3]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "boundary_management_31fe45",
+          "role": "button",
+          "tag": "button",
+          "label": "Boundary management",
+          "description": "Button that triggers the 'Boundary management' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Boundary management', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[5]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "my_campaigns_f6aa30",
+          "role": "button",
+          "tag": "button",
+          "label": "My campaigns",
+          "description": "Button that triggers the 'My campaigns' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'My campaigns', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[5]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "create_campaign_af3021",
+          "role": "button",
+          "tag": "button",
+          "label": "Create campaign",
+          "description": "Button that triggers the 'Create campaign' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create campaign', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[5]/button[3]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "search_user_8a67fa",
+          "role": "button",
+          "tag": "button",
+          "label": "Search user",
+          "description": "Button that triggers the 'Search user' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Search user', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[6]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "create_user_980434",
+          "role": "button",
+          "tag": "button",
+          "label": "Create user",
+          "description": "Button that triggers the 'Create user' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create user', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[6]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "search_complaint_c22151",
+          "role": "button",
+          "tag": "button",
+          "label": "Search complaint",
+          "description": "Button that triggers the 'Search complaint' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Search complaint', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[7]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "create_complaint_17f516",
+          "role": "button",
+          "tag": "button",
+          "label": "Create complaint",
+          "description": "Button that triggers the 'Create complaint' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create complaint', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[7]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "dashboard_8806f1",
+          "role": "button",
+          "tag": "button",
+          "label": "Dashboard",
+          "description": "Button that triggers the 'Dashboard' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Dashboard', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[8]/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "sierraleone_c39b9d-2",
+          "role": "button",
+          "tag": "div",
+          "label": "SierraLeone",
+          "description": "Button that triggers the 'SierraLeone' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'SierraLeone', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[1]/div/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "logout_8358e8",
+          "role": "button",
+          "tag": "div",
+          "label": "Logout",
+          "description": "Button that triggers the 'Logout' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Logout', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[3]/div/div[2]/div/div/div[2]",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "commodity_management_2ffe55-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Commodity Management",
+          "description": "Button that triggers the 'Commodity Management' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+          "raw_href": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Commodity Management', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[1]/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "animation_1dcbe0",
+          "role": "button",
+          "tag": "div",
+          "label": "animation",
+          "description": "Button that triggers the 'animation' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'animation', exact: true })",
+            "xpath": "//div[@aria-label='animation']",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "tenant_tenants_si_e1381e",
+          "role": "button",
+          "tag": "div",
+          "label": "TENANT_TENANTS_SI",
+          "description": "Button that triggers the 'TENANT_TENANTS_SI' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'TENANT_TENANTS_SI', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[1]/div/div/div[2]/div/div/div",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "tenant_tenants_si_e1381e-2",
+          "role": "button",
+          "tag": "div",
+          "label": "TENANT_TENANTS_SI",
+          "description": "Button that triggers the 'TENANT_TENANTS_SI' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'TENANT_TENANTS_SI', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[1]/div/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_create_complaint",
+      "path": "/payments-ui/employee/pgr/create-complaint",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+      "title": "DIGIT HCM",
+      "description": "",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": true,
+      "depth": 7,
+      "auth_context": "authenticated",
+      "scrape_status": "ok",
+      "ready_state": "stable",
+      "status": "observed",
+      "unexplored_interactions": [],
+      "elements": [
+        {
+          "element_id": "home_b6873d",
+          "role": "link",
+          "tag": "a",
+          "label": "Home",
+          "description": "Link to Home.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+          "raw_href": "/payments-ui/employee",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/ol/li[1]/a",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "choose_file_4a8be7",
+          "role": "button",
+          "tag": "button",
+          "label": "Choose file",
+          "description": "Button that triggers the 'Choose file' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Choose file', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[10]/div/div/div/div/div/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "submit_b6846a",
+          "role": "button",
+          "tag": "button",
+          "label": "Submit",
+          "description": "Button that triggers the 'Submit' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Submit', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[2]/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "select_date_f857ea",
+          "role": "input",
+          "tag": "input",
+          "label": "Select date",
+          "description": "Input field for entering Select date.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": null,
+          "placeholder": "Select date",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('textbox', { name: 'Select date', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[2]/div/div/div/div/input[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "complaintdate_8ac55d",
+          "role": "input",
+          "tag": "input",
+          "label": "ComplaintDate",
+          "description": "Input field for entering ComplaintDate.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "ComplaintDate",
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"ComplaintDate\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[2]/div/div/div/div/input[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "complainantname_f24ee8",
+          "role": "input",
+          "tag": "input",
+          "label": "ComplainantName",
+          "description": "Input field for entering ComplainantName.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "ComplainantName",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"ComplainantName\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[5]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "complainantcontactnumber_33edae",
+          "role": "input",
+          "tag": "input",
+          "label": "ComplainantContactNumber",
+          "description": "Input field for entering ComplainantContactNumber.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "ComplainantContactNumber",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"ComplainantContactNumber\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[6]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "supervisorname_5a5518",
+          "role": "input",
+          "tag": "input",
+          "label": "SupervisorName",
+          "description": "Input field for entering SupervisorName.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "SupervisorName",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"SupervisorName\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[7]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "supervisorcontactnumber_0789ef",
+          "role": "input",
+          "tag": "input",
+          "label": "SupervisorContactNumber",
+          "description": "Input field for entering SupervisorContactNumber.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "SupervisorContactNumber",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"SupervisorContactNumber\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[8]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "file_eabcd3",
+          "role": "input",
+          "tag": "input",
+          "label": "file",
+          "description": "Input field for entering file.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "file",
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"file\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[10]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "addressone_f4f351",
+          "role": "input",
+          "tag": "input",
+          "label": "AddressOne",
+          "description": "Input field for entering AddressOne.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "AddressOne",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"AddressOne\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[11]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "addresstwo_65ffc0",
+          "role": "input",
+          "tag": "input",
+          "label": "AddressTwo",
+          "description": "Input field for entering AddressTwo.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "AddressTwo",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"AddressTwo\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[12]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "landmark_931a6c",
+          "role": "input",
+          "tag": "input",
+          "label": "landmark",
+          "description": "Input field for entering landmark.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "landmark",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"landmark\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[13]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "postalcode_32f79f",
+          "role": "input",
+          "tag": "input",
+          "label": "postalCode",
+          "description": "Input field for entering postalCode.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "postalCode",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"postalCode\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[14]/div/div/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_payments_7b2726",
+          "description": "Form used to collect and submit https sierraleone hcm digit org payments 7b2726 data.",
+          "action": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+          "method": "GET",
+          "status": "observed",
+          "selectors": {
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form"
+          },
+          "fields": [
+            {
+              "field_id": "field_0_9988fc",
+              "name": "",
+              "type": "text",
+              "label": "field_0",
+              "description": "Input field for entering field_0.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-cs_complaint_details_complaint_type')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[1]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "select_date_f857ea",
+              "name": "",
+              "type": "text",
+              "label": "Select date",
+              "description": "Input field for entering Select date.",
+              "required": false,
+              "placeholder": "Select date",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.getByRole('textbox', { name: 'Select date', exact: true })",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[2]/div/div/div/div/input[1]",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "complaintdate_8ac55d",
+              "name": "ComplaintDate",
+              "type": "date",
+              "label": "ComplaintDate",
+              "description": "Input field for entering ComplaintDate.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {
+                "min": "",
+                "max": "2026-11-20"
+              },
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('[name=\"ComplaintDate\"]')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[2]/div/div/div/div/input[2]",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "field_3_f0ae98",
+              "name": "",
+              "type": "text",
+              "label": "field_3",
+              "description": "Input field for entering field_3.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.getByRole('textbox', { name: 'field_3', exact: true })",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[3]/div/div/div/div/div[2]/div/div/input",
+                "match_count": 0,
+                "validation_status": "no_match"
+              }
+            },
+            {
+              "field_id": "field_4_cba6ab",
+              "name": "",
+              "type": "radio",
+              "label": "field_4",
+              "description": "Input field for entering field_4.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-es_createcomplaint_for')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[4]/div/div/div/div[1]/span/input",
+                "match_count": 2,
+                "validation_status": "ambiguous"
+              }
+            },
+            {
+              "field_id": "field_5_cba6ab",
+              "name": "",
+              "type": "radio",
+              "label": "field_5",
+              "description": "Input field for entering field_5.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-es_createcomplaint_for')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[4]/div/div/div/div[2]/span/input",
+                "match_count": 2,
+                "validation_status": "ambiguous"
+              }
+            },
+            {
+              "field_id": "complainantname_fc3612",
+              "name": "ComplainantName",
+              "type": "text",
+              "label": "ComplainantName",
+              "description": "Input field for entering ComplainantName.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-complaints_complainant_name')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[5]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "complainantcontactnumber_869a24",
+              "name": "ComplainantContactNumber",
+              "type": "text",
+              "label": "ComplainantContactNumber",
+              "description": "Input field for entering ComplainantContactNumber.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-complaints_complainant_contact_number')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[6]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "supervisorname_abb008",
+              "name": "SupervisorName",
+              "type": "text",
+              "label": "SupervisorName",
+              "description": "Input field for entering SupervisorName.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-complaints_supervisor_name')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[7]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "supervisorcontactnumber_fef562",
+              "name": "SupervisorContactNumber",
+              "type": "text",
+              "label": "SupervisorContactNumber",
+              "description": "Input field for entering SupervisorContactNumber.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-complaints_supervisor_contact_number')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[8]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "description_9237c5",
+              "name": "description",
+              "type": "textarea",
+              "label": "description",
+              "description": "Input field for entering description.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-cs_complaint_details_additional_details_description')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[9]/div/div/div/textarea",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "file_34e35c",
+              "name": "file",
+              "type": "file",
+              "label": "file",
+              "description": "Input field for entering file.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {
+                "accept": ".pdf,.jpg,.jpeg"
+              },
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#upload-complaintFile')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[10]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "addressone_768768",
+              "name": "AddressOne",
+              "type": "text",
+              "label": "AddressOne",
+              "description": "Input field for entering AddressOne.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-cs_complaint_details_address_1_details')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[11]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "addresstwo_aa6d1e",
+              "name": "AddressTwo",
+              "type": "text",
+              "label": "AddressTwo",
+              "description": "Input field for entering AddressTwo.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-cs_complaint_details_address_2_details')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[12]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "landmark_b88ef6",
+              "name": "landmark",
+              "type": "text",
+              "label": "landmark",
+              "description": "Input field for entering landmark.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-cs_complaint_landmark__details')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[13]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "postalcode_0b8576",
+              "name": "postalCode",
+              "type": "number",
+              "label": "postalCode",
+              "description": "Input field for entering postalCode.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('#pgr-create-complaint-cs_complaint_postalcode__details')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/form/div[1]/div[14]/div/div/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_inbox_v2",
+      "path": "/payments-ui/employee/pgr/inbox-v2",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+      "title": "DIGIT HCM",
+      "description": "",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "medium",
+      "is_protected": true,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "ok",
+      "ready_state": "stable",
+      "status": "observed",
+      "unexplored_interactions": [],
+      "elements": [
+        {
+          "element_id": "home_b6873d",
+          "role": "link",
+          "tag": "a",
+          "label": "Home",
+          "description": "Link to Home.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+          "raw_href": "/payments-ui/employee",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/ol/li[1]/a",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "new_complaint_bc0fc8",
+          "role": "link",
+          "tag": "a",
+          "label": "New Complaint",
+          "description": "Link to New Complaint.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+          "raw_href": "/payments-ui/employee/pgr/create-complaint",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/create-complaint\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/span/a",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_20_004556_0cd688",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-20-004556",
+          "description": "Link to PGR-2026-11-20-004556.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[1]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_20_004553_e19383",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-20-004553",
+          "description": "Link to PGR-2026-11-20-004553.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[2]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_20_004552_ee564e",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-20-004552",
+          "description": "Link to PGR-2026-11-20-004552.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[3]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004547_9dc3ae",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004547",
+          "description": "Link to PGR-2026-11-19-004547.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[4]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004546_09e854",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004546",
+          "description": "Link to PGR-2026-11-19-004546.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[5]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004542_71ad34",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004542",
+          "description": "Link to PGR-2026-11-19-004542.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[6]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004539_22eb5c",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004539",
+          "description": "Link to PGR-2026-11-19-004539.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[7]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004538_aec02a",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004538",
+          "description": "Link to PGR-2026-11-19-004538.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[8]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004529_2beb51",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004529",
+          "description": "Link to PGR-2026-11-19-004529.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[9]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "pgr_2026_11_19_004528_5526d8",
+          "role": "link",
+          "tag": "a",
+          "label": "PGR-2026-11-19-004528",
+          "description": "Link to PGR-2026-11-19-004528.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+          "raw_href": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[1]/div/div/div[2]/div[10]/div[1]/div/div/span[1]/a",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "apply_18d6c0",
+          "role": "button",
+          "tag": "button",
+          "label": "Apply",
+          "description": "Button that triggers the 'Apply' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Apply', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[3]/div/div/div[3]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "clear_all_d8e461",
+          "role": "button",
+          "tag": "button",
+          "label": "Clear All",
+          "description": "Button that triggers the 'Clear All' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Clear All', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[3]/div/div/div[3]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "next_page_4297e0",
+          "role": "button",
+          "tag": "button",
+          "label": "Next Page",
+          "description": "Button that triggers the 'Next Page' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "nav",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Next Page', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[2]/nav/div[2]/button[3]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "last_page_9cd9d1",
+          "role": "button",
+          "tag": "button",
+          "label": "Last Page",
+          "description": "Button that triggers the 'Last Page' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "nav",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Last Page', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[2]/nav/div[2]/button[4]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "clear_search_c692f5",
+          "role": "button",
+          "tag": "button",
+          "label": "Clear Search",
+          "description": "Button that triggers the 'Clear Search' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Clear Search', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form/div/div/div[4]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "first_page_b08b28",
+          "role": "button",
+          "tag": "button",
+          "label": "First Page",
+          "description": "Button that triggers the 'First Page' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": "First Page",
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'First Page', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[2]/nav/div[2]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "previous_page_131236",
+          "role": "button",
+          "tag": "button",
+          "label": "Previous Page",
+          "description": "Button that triggers the 'Previous Page' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": "Previous Page",
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Previous Page', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[2]/nav/div[2]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "complaintnumber_7836f5",
+          "role": "input",
+          "tag": "input",
+          "label": "complaintNumber",
+          "description": "Input field for entering complaintNumber.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "complaintNumber",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"complaintNumber\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form/div/div/div[1]/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "mobilenumber_c51cd9",
+          "role": "input",
+          "tag": "input",
+          "label": "mobileNumber",
+          "description": "Input field for entering mobileNumber.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "mobileNumber",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"mobileNumber\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form/div/div/div[2]/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "rows_per_page_70af54",
+          "role": "combobox",
+          "tag": "select",
+          "label": "Rows per page",
+          "description": "Dropdown for selecting Rows per page.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Rows per page', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div[2]/nav/div[1]/select",
+            "match_count": 0,
+            "validation_status": "no_match"
+          }
+        },
+        {
+          "element_id": "clear_all_d8e461-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Clear All",
+          "description": "Button that triggers the 'Clear All' action on this page.",
+          "category": "revealed_inline",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Clear All', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[3]/div/div/div[3]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          }
+        },
+        {
+          "element_id": "animation_1dcbe0",
+          "role": "button",
+          "tag": "div",
+          "label": "animation",
+          "description": "Button that triggers the 'animation' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'animation', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[4]/div/div/div/div",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_payments_3ca9a1",
+          "description": "Form used to collect and submit https sierraleone hcm digit org payments 3ca9a1 data.",
+          "action": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+          "method": "GET",
+          "status": "observed",
+          "selectors": {
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form"
+          },
+          "fields": [
+            {
+              "field_id": "complaintnumber_7836f5",
+              "name": "complaintNumber",
+              "type": "text",
+              "label": "complaintNumber",
+              "description": "Input field for entering complaintNumber.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {
+                "minlength": "2"
+              },
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('[name=\"complaintNumber\"]')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form/div/div/div[1]/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "mobilenumber_c51cd9",
+              "name": "mobileNumber",
+              "type": "text",
+              "label": "mobileNumber",
+              "description": "Input field for entering mobileNumber.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {
+                "minlength": "2"
+              },
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('[name=\"mobileNumber\"]')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form/div/div/div[2]/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            },
+            {
+              "field_id": "field_2_2ab45f",
+              "name": "",
+              "type": "text",
+              "label": "field_2",
+              "description": "Input field for entering field_2.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.getByRole('textbox', { name: 'field_2', exact: true })",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/div[2]/div[1]/div[2]/div/div/form/div/div/div[3]/div[2]/div/input",
+                "match_count": 0,
+                "validation_status": "no_match"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page_id": "workbench_ui_employee_campaign_commodity_campaig",
+      "path": "/workbench-ui/employee/campaign/commodity-campaigns",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+      "title": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [
+        {
+          "element_id": "home_691dd0",
+          "role": "link",
+          "tag": "a",
+          "label": "Home",
+          "description": "Link to Home.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/workbench-ui/employee",
+          "raw_href": "/workbench-ui/employee",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('a[href=\"/workbench-ui/employee\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[1]/ol/li[1]/a",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "tenant_tenants_si_e1381e",
+          "role": "button",
+          "tag": "div",
+          "label": "TENANT_TENANTS_SI",
+          "description": "Button that triggers the 'TENANT_TENANTS_SI' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'TENANT_TENANTS_SI', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[1]/div/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "english_495985",
+          "role": "button",
+          "tag": "div",
+          "label": "English",
+          "description": "Button that triggers the 'English' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'English', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[2]/div/div/div[2]/div/div/div",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "s_24f482",
+          "role": "button",
+          "tag": "div",
+          "label": "S",
+          "description": "Button that triggers the 'S' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'S', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[3]/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "itn_distribution_ea45c1",
+          "role": "button",
+          "tag": "div",
+          "label": "ITN Distribution",
+          "description": "Button that triggers the 'ITN Distribution' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'ITN Distribution', exact: true })",
+            "xpath": "//div[contains(text(),'ITN Distribution')]",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "ongoing_722070",
+          "role": "button",
+          "tag": "div",
+          "label": "Ongoing",
+          "description": "Button that triggers the 'Ongoing' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Ongoing', exact: true })",
+            "xpath": "//div[contains(text(),'Ongoing')]",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "view_dashboard_9fd00a",
+          "role": "button",
+          "tag": "button",
+          "label": "View Dashboard",
+          "description": "Button that triggers the 'View Dashboard' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'View Dashboard', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/div/div[2]/div[2]/div/button",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "clear_9d06f3",
+          "role": "button",
+          "tag": "button",
+          "label": "Clear",
+          "description": "Button that triggers the 'Clear' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": "Clear",
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Clear', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div[2]/form/div/div/div[2]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "sort_708f51",
+          "role": "button",
+          "tag": "button",
+          "label": "Sort",
+          "description": "Button that triggers the 'Sort' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": "Sort",
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Sort', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div[2]/form/div/div/div[2]/button[3]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "campaignname_80835e",
+          "role": "input",
+          "tag": "input",
+          "label": "campaignName",
+          "description": "Input field for entering campaignName.",
+          "category": "form_control",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "fill",
+            "type"
+          ],
+          "input_type": "input",
+          "name": "campaignName",
+          "placeholder": "",
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.locator('[name=\"campaignName\"]')",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div[2]/form/div/div/div[1]/div/div/input",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "english_495985-2",
+          "role": "button",
+          "tag": "div",
+          "label": "English",
+          "description": "Button that triggers the 'English' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'English', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[2]/div/div/div[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        },
+        {
+          "element_id": "logout_8358e8",
+          "role": "button",
+          "tag": "div",
+          "label": "Logout",
+          "description": "Button that triggers the 'Logout' action on this page.",
+          "category": "action",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "unknown",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "input_type": null,
+          "name": null,
+          "placeholder": null,
+          "aria_label": null,
+          "is_auth_related": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Logout', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[1]/div[2]/div[3]/div/div[2]/div/div/div[2]",
+            "match_count": 0,
+            "validation_status": "no_match"
+          },
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        }
+      ],
+      "forms": [
+        {
+          "form_id": "https_sierraleone_hcm_digit_org_workbenc_2e7dc9",
+          "description": "Form used to collect and submit https sierraleone hcm digit org workbenc 2e7dc9 data.",
+          "action": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/commodity-campaigns",
+          "method": "GET",
+          "status": "observed",
+          "selectors": {
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div[2]/form"
+          },
+          "fields": [
+            {
+              "field_id": "campaignname_80835e",
+              "name": "campaignName",
+              "type": "text",
+              "label": "campaignName",
+              "description": "Input field for entering campaignName.",
+              "required": false,
+              "placeholder": "",
+              "constraints": {},
+              "status": "observed",
+              "selectors": {
+                "playwright": "page.locator('[name=\"campaignName\"]')",
+                "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div[2]/form/div/div/div[1]/div/div/input",
+                "match_count": 1,
+                "validation_status": "unique"
+              }
+            }
+          ],
+          "stale": true,
+          "last_seen": "2026-11-16T05:01:50.448229+00:00"
+        }
+      ]
+    },
+    {
+      "page_id": "payments_ui_employee",
+      "path": "/payments-ui/employee",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [
+        {
+          "element_id": "create_complaint_6e9b9c",
+          "role": "button",
+          "tag": "button",
+          "label": "Create Complaint",
+          "description": "Button that triggers the 'Create Complaint' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create Complaint', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[1]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "search_complaint_bb5939",
+          "role": "button",
+          "tag": "button",
+          "label": "Search Complaint",
+          "description": "Button that triggers the 'Search Complaint' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Search Complaint', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[1]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "search_user_c69de7",
+          "role": "button",
+          "tag": "button",
+          "label": "Search User",
+          "description": "Button that triggers the 'Search User' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Search User', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "create_user_7aa17a",
+          "role": "button",
+          "tag": "button",
+          "label": "Create User",
+          "description": "Button that triggers the 'Create User' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create User', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "create_campaign_1e2547",
+          "role": "button",
+          "tag": "button",
+          "label": "Create Campaign",
+          "description": "Button that triggers the 'Create Campaign' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create Campaign', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "my_campaign_63678d",
+          "role": "button",
+          "tag": "button",
+          "label": "My Campaign",
+          "description": "Button that triggers the 'My Campaign' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'My Campaign', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "setup_campaign_from_microplan_5dae9f",
+          "role": "button",
+          "tag": "button",
+          "label": "Setup Campaign From Microplan",
+          "description": "Button that triggers the 'Setup Campaign From Microplan' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Setup Campaign From Microplan', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[3]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "smc_mbezi_highlands_f198af",
+          "role": "button",
+          "tag": "button",
+          "label": "SMC Mbezi Highlands",
+          "description": "Button that triggers the 'SMC Mbezi Highlands' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'SMC Mbezi Highlands', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[4]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "boundary_management_efb20f",
+          "role": "button",
+          "tag": "button",
+          "label": "Boundary Management",
+          "description": "Button that triggers the 'Boundary Management' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Boundary Management', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[5]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "setup_payment_attributes_86ccb4",
+          "role": "button",
+          "tag": "button",
+          "label": "Setup Payment Attributes",
+          "description": "Button that triggers the 'Setup Payment Attributes' action on this page.",
+          "category": "navigation",
+          "href": "",
+          "raw_href": "",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Setup Payment Attributes', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[4]/button",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "create_complaint_6e9b9c-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Create Complaint",
+          "description": "Button that triggers the 'Create Complaint' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+          "raw_href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create Complaint', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[1]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "search_complaint_bb5939-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Search Complaint",
+          "description": "Button that triggers the 'Search Complaint' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+          "raw_href": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Search Complaint', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[1]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "search_user_c69de7-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Search User",
+          "description": "Button that triggers the 'Search User' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/inbox",
+          "raw_href": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/inbox",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Search User', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "create_user_7aa17a-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Create User",
+          "description": "Button that triggers the 'Create User' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/create",
+          "raw_href": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/create",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create User', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[2]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "create_campaign_1e2547-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Create Campaign",
+          "description": "Button that triggers the 'Create Campaign' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home",
+          "raw_href": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Create Campaign', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[1]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "my_campaign_63678d-2",
+          "role": "button",
+          "tag": "button",
+          "label": "My Campaign",
+          "description": "Button that triggers the 'My Campaign' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/my-campaign-new",
+          "raw_href": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/my-campaign-new",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'My Campaign', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[2]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "setup_campaign_from_microplan_5dae9f-2",
+          "role": "button",
+          "tag": "button",
+          "label": "Setup Campaign From Microplan",
+          "description": "Button that triggers the 'Setup Campaign From Microplan' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/error",
+          "raw_href": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/error?type=notfound&module=Campaign",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'Setup Campaign From Microplan', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[3]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        },
+        {
+          "element_id": "smc_mbezi_highlands_f198af-2",
+          "role": "button",
+          "tag": "button",
+          "label": "SMC Mbezi Highlands",
+          "description": "Button that triggers the 'SMC Mbezi Highlands' action on this page.",
+          "category": "navigation",
+          "href": "https://sierraleone-hcm.digit.org/digit-ui/employee",
+          "raw_href": "https://sierraleone-hcm.digit.org/digit-ui/employee",
+          "fragment": null,
+          "target_path": null,
+          "region": "content",
+          "frame": null,
+          "actions": [
+            "click"
+          ],
+          "opens_new_tab": false,
+          "status": "observed",
+          "selectors": {
+            "playwright": "page.getByRole('button', { name: 'SMC Mbezi Highlands', exact: true })",
+            "xpath": "/html/body/div/div/div/div/div[3]/div[1]/div/div/div/div[3]/button[4]",
+            "match_count": 1,
+            "validation_status": "unique"
+          },
+          "stale": true,
+          "last_seen": "2026-11-20T07:21:19.093242+00:00"
+        }
+      ],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004528",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_2",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004529",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_3",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004538",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_4",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004539",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_5",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004542",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_6",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004546",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_7",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-19-004547",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_8",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004552",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_9",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004553",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "payments_ui_employee_pgr_complaint_details_pgr_2_10",
+      "path": "/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/complaint-details/PGR-2026-11-20-004556",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 8,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": []
+    },
+    {
+      "page_id": "digit_ui_employee",
+      "path": "/digit-ui/employee",
+      "url": "https://sierraleone-hcm.digit.org/digit-ui/employee",
+      "title": "https://sierraleone-hcm.digit.org/digit-ui/employee",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 10,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": [],
+      "stale": true,
+      "last_seen": "2026-11-16T05:01:50.448229+00:00"
+    },
+    {
+      "page_id": "payments_ui_employee_hrms_create",
+      "path": "/payments-ui/employee/hrms/create",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/create",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/create",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 10,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": [],
+      "stale": true,
+      "last_seen": "2026-11-16T05:01:50.448229+00:00"
+    },
+    {
+      "page_id": "payments_ui_employee_hrms_inbox",
+      "path": "/payments-ui/employee/hrms/inbox",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/inbox",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/hrms/inbox",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 10,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": [],
+      "stale": true,
+      "last_seen": "2026-11-16T05:01:50.448229+00:00"
+    },
+    {
+      "page_id": "payments_ui_employee_user_error",
+      "path": "/payments-ui/employee/user/error",
+      "url": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/error",
+      "title": "https://sierraleone-hcm.digit.org/payments-ui/employee/user/error",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 10,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": [],
+      "stale": true,
+      "last_seen": "2026-11-16T05:01:50.448229+00:00"
+    },
+    {
+      "page_id": "workbench_ui_employee_campaign_my_campaign_new",
+      "path": "/workbench-ui/employee/campaign/my-campaign-new",
+      "url": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/my-campaign-new",
+      "title": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/my-campaign-new",
+      "description": "Discovered but not crawled — page/depth budget reached before this route.",
+      "description_pending": true,
+      "page_type": "unknown",
+      "test_priority": "low",
+      "is_protected": false,
+      "depth": 10,
+      "auth_context": "authenticated",
+      "scrape_status": "not_visited",
+      "ready_state": "n/a",
+      "status": "unexplored",
+      "unexplored_interactions": [],
+      "elements": [],
+      "forms": [],
+      "stale": true,
+      "last_seen": "2026-11-16T05:01:50.448229+00:00"
+    }
+  ]
+}

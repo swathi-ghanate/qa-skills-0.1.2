@@ -1,0 +1,36 @@
+module: login
+flow_id: AUTH-12
+flow_name: login_banner_carousel
+priority: P2
+type: [e2e]
+tags: [regression]
+
+actors:
+  - unauthenticated
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee_user_login, home]
+
+cases:
+  - id: AUTH-12-H1
+    title: Move the login banner carousel forward and back without errors
+    type: happy_path
+    test_type: [e2e]
+    priority: P2
+    tags: [regression]
+    preconditions:
+      - "Fresh browser context with no stored session"
+      - "Browser is on the origin + /workbench-ui/employee/user/login"
+    steps:
+      - "1. Open /workbench-ui/employee/user/login and wait for animation_1dcbe0 to be hidden"
+      - "2. Click navigation_button_9c123c (next)"
+      - "3. Click navigation_button_b3a210 (previous)"
+    assertions:
+      - url_pathname_is_workbench_ui_employee_user_login
+      - no_console_errors
+      - username_field_visible
+    test_data_ref: AUTH-12-H1
+    coverage_note: >
+      Smoke-level check of the carousel controls; all slides share the same text, so slide changes need a visual or manual check.

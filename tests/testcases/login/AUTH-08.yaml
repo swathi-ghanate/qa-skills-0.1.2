@@ -1,0 +1,42 @@
+module: login
+flow_id: AUTH-08
+flow_name: session_survives_reload
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [workbench_ui_employee, home]
+
+cases:
+  - id: AUTH-08-H1
+    title: Stay logged in after reloading the workbench home
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /workbench-ui/employee"
+    steps:
+      - "1. Open /workbench-ui/employee and wait for animation_1dcbe0 to be hidden"
+      - "2. Wait for commodity_management_2ffe55 to be visible"
+      - "3. Reload the page"
+      - "4. Wait for animation_1dcbe0 to be hidden"
+    assertions:
+      - url_pathname_is_workbench_ui_employee
+      - commodity_management_card_visible
+    test_data_ref: AUTH-08-H1
+    coverage_note: >
+      The localStorage session survives a full SPA reload, which no other case exercises.
+
+rbac_checks:
+  - id: AUTH-08-RBAC-1
+    actor: unauthenticated
+    endpoint: "GET <TBD: protected API called by /workbench-ui/employee; run qa-kit api-scrape>"
+    expected_status: 401

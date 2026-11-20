@@ -1,0 +1,47 @@
+module: complaints-inbox
+flow_id: INB-07
+flow_name: clear_all_filters
+priority: P1
+type: [e2e]
+tags: [regression]
+# Source: tests/testplan/complaints-inbox.md#inb-07. Filter controls are contract gaps; see the notes in INB-06.yaml.
+# In user management, Clear Filter unchecked the radio but kept sending the filter (defect USR-04-H5), so the request is
+# checked here too, not only the controls. Logged-out API check for the inbox search: INB-13-RBAC-1.
+
+actors:
+  - admin
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+api_endpoints:
+  - method: POST
+    path: /inbox/v2/_search   # observed live 2026-11-20; not in contract/api-contract.json
+    service: inbox
+
+ui_pages: [payments_ui_employee_pgr_inbox_v2]
+
+cases:
+  - id: INB-07-H1
+    title: Reset every filter and stop sending them when Clear All is clicked
+    type: happy_path
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Browser is on the origin + /payments-ui/employee/pgr/inbox-v2"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/inbox-v2, wait for animation_1dcbe0 to be hidden and for the first results column header, up to 90 s"
+      - "2. Set the filters from test data INB-07-H1: the Assigned to me radio, the complaint type and the Pending Assignment status (contract gaps)"
+      - "3. Click apply_18d6c0 and wait for the POST /inbox/v2/_search response"
+      - "4. Click clear_all_d8e461 and wait for the next POST /inbox/v2/_search response"
+    assertions:
+      - assignee_radios_unchecked
+      - complaint_type_field_empty
+      - status_checkbox_unchecked
+      - last_search_request_without_filters
+      - result_rows_between_1_and_10
+    test_data_ref: INB-07-H1
+    coverage_note: >
+      Reset of the whole Filter card, checked in both the controls and the request; the user-management Clear Filter defect shows why both matter.

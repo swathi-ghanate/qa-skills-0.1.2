@@ -1,0 +1,30 @@
+{
+  "auth": "form",
+  "baseUrl": "https://sierraleone-hcm.digit.org/workbench-ui/employee/campaign/campaign-home",
+  "framework": "playwright",
+  "mobile": {},
+  "mobileFramework": null,
+  "paths": {
+    "api": "tests/api",
+    "apiContract": "contract/api-contract.json",
+    "authState": ".auth",
+    "contract": "contract/ui-contract.json",
+    "domainRules": ".qa/domain-rules",
+    "e2e": "tests/e2e",
+    "fixtures": "tests/fixtures",
+    "helpers": "tests/helpers",
+    "integration": "tests/integration",
+    "maestroFlows": ".maestro",
+    "pages": "tests/pages",
+    "testCases": "tests/testcases",
+    "testPlans": "tests/testplan",
+    "testResults": "test-results"
+  },
+  "seedPaths": [
+    "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/create-complaint",
+    "https://sierraleone-hcm.digit.org/payments-ui/employee/pgr/inbox-v2",
+    "https://sierraleone-hcm.digit.org/workbench-ui/employee/user/login"
+  ],
+  "target": "web",
+  "version": 1
+}

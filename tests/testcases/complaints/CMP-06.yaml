@@ -1,0 +1,175 @@
+module: complaints
+flow_id: CMP-06
+flow_name: mandatory_and_format_validation
+priority: P1
+type: [e2e]
+tags: [regression]
+
+actors:
+  - admin   # default actor: the .env test account via .auth/storage-state.json written by global-setup.ts (exact roles not confirmed)
+
+environments:
+  qa_ui: https://sierraleone-hcm.digit.org/workbench-ui/employee   # workbench home = post-login page; steps use absolute paths from the origin
+
+ui_pages: [payments_ui_employee_pgr_create_complaint, home]
+
+cases:
+  - id: CMP-06-E1
+    title: Block an empty complaint with field errors and a mandatory-fields alert
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Start tracking create requests"
+      - "3. Click submit_b6846a"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_create_complaint
+      - required_errors_visible
+      - complainant_name_invalid_error_visible
+      - mobile_number_invalid_error_visible
+      - mandatory_fields_alert_visible
+      - no_create_request_sent
+    test_data_ref: CMP-06-E1
+    coverage_note: >
+      All mandatory fields empty at once; the messages were observed live on 2026-11-16.
+
+  - id: CMP-06-E2
+    title: Reject an 8-digit complainant mobile number
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "Complaint description stays empty as a second safety net, so the form can never be valid"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click field_5_cba6ab (Another User)"
+      - "3. Fill complainantname_fc3612 with the synthetic name from test data CMP-06-E2"
+      - "4. Fill complainantcontactnumber_869a24 with the 8-digit number from test data CMP-06-E2"
+      - "5. Start tracking create requests"
+      - "6. Click submit_b6846a"
+    assertions:
+      - mobile_number_invalid_error_visible
+      - no_create_request_sent
+    test_data_ref: CMP-06-E2
+    coverage_note: >
+      Just below the 9-digit minimum (form rule 9 to 11 digits, checked live 2026-11-20; user: 9 digits); E1 covers an empty number.
+
+  - id: CMP-06-E3
+    title: Reject a complainant name with digits and special characters
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "Complaint description stays empty as a second safety net, so the form can never be valid"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click field_5_cba6ab (Another User)"
+      - "3. Fill complainantname_fc3612 with the invalid name from test data CMP-06-E3"
+      - "4. Fill complainantcontactnumber_869a24 with the 11-digit synthetic number from test data CMP-06-E3"
+      - "5. Start tracking create requests"
+      - "6. Click submit_b6846a"
+    assertions:
+      - complainant_name_invalid_error_visible
+      - no_create_request_sent
+    test_data_ref: CMP-06-E3
+    coverage_note: >
+      A filled but invalid name (E1 covers an empty one); the exact name rule is still to be confirmed.
+
+  - id: CMP-06-E4
+    title: Block a complaint that has everything except the description
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Choose the complaint type from test data CMP-06-E4 (arrow icon of field_0_9988fc)"
+      - "3. Fill complaintdate_8ac55d with today's date (computed at run time)"
+      - "4. Choose the Country from test data CMP-06-E4"
+      - "5. Click field_5_cba6ab (Another User) and fill complainantname_fc3612 and complainantcontactnumber_869a24 from test data CMP-06-E4"
+      - "6. Start tracking create requests"
+      - "7. Click submit_b6846a"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_create_complaint
+      - description_required_error_visible
+      - mandatory_fields_alert_visible
+      - no_create_request_sent
+    test_data_ref: CMP-06-E4
+    coverage_note: >
+      Isolates one missing mandatory field (description) with everything else valid, so a missing check on that field alone is caught; the guard stops a real create if that happens.
+
+  - id: CMP-06-E5
+    title: Reject a 12-digit complainant mobile number
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+      - "Complaint description stays empty as a second safety net, so the form can never be valid"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Click field_5_cba6ab (Another User)"
+      - "3. Fill complainantname_fc3612 with the synthetic name from test data CMP-06-E5"
+      - "4. Fill complainantcontactnumber_869a24 with the 12-digit number from test data CMP-06-E5"
+      - "5. Start tracking create requests"
+      - "6. Click submit_b6846a"
+    assertions:
+      - mobile_number_invalid_error_visible
+      - no_create_request_sent
+    test_data_ref: CMP-06-E5
+    coverage_note: >
+      Just above the 11-digit maximum; together with E2 it pins the 9 to 11 digit range from both sides.
+
+  - id: CMP-06-E6
+    title: Block a complaint that has everything except the Country
+    type: negative
+    test_type: [e2e]
+    priority: P1
+    tags: [regression]
+    preconditions:
+      - "Authenticated session from global-setup.ts (workbench login) loaded from .auth/storage-state.json"
+      - "Safety guard: the test aborts any create request (URL ending in _create), so no complaint can be created"
+      - "Browser is on the origin + /payments-ui/employee/pgr/create-complaint"
+    steps:
+      - "1. Open /payments-ui/employee/pgr/create-complaint, wait for animation_1dcbe0 to be hidden and for the one-time form rebuild (form element replaced, max 15 s)"
+      - "2. Choose the complaint type from test data CMP-06-E6 (arrow icon of field_0_9988fc)"
+      - "3. Fill complaintdate_8ac55d with today's date (computed at run time)"
+      - "4. Click field_5_cba6ab (Another User) and fill complainantname_fc3612 and complainantcontactnumber_869a24 from test data CMP-06-E6"
+      - "5. Fill description_9237c5 with the QA-TEST description from test data CMP-06-E6"
+      - "6. Start tracking create requests"
+      - "7. Click submit_b6846a"
+    assertions:
+      - url_pathname_is_payments_ui_employee_pgr_create_complaint
+      - no_other_field_errors_shown   # proves the block comes from Country alone; the app shows no inline "Required" under Country (observed 2026-11-16), only the alert
+      - mandatory_fields_alert_visible
+      - no_create_request_sent
+    test_data_ref: CMP-06-E6
+    coverage_note: >
+      Country is the only mandatory boundary level (team, 2026-11-16); this isolates it with every other field valid. Its mobile number has 9 digits, so it also shows the lowest valid length is accepted.
+
+rbac_checks:
+  - id: CMP-06-RBAC-1
+    actor: unauthenticated
+    endpoint: "POST /pgr-services/v2/request/_create (observed live 2026-11-16; send an invalid payload only, so an auth bug cannot create a complaint)"
+    expected_status: 401
